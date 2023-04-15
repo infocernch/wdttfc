@@ -32,5 +32,11 @@ public class NewsDAO {
 		}
 		return list;
 	}
+
+	public void insertNews(WdttNewsDTO dto) {
+		try(SqlSession session=MybatisManager.getInstance().openSession()){
+			
+		}
+	}
 	
 }
