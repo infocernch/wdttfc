@@ -17,7 +17,7 @@
 	</c:if>
 </head>
 <body>
-엿머겅1111
+엿먹지망11
 <%@ include file="header.jsp" %>
 <%@ include file="content.jsp" %>
 <%@ include file="footer.jsp" %>
