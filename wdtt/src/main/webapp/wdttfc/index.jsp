@@ -17,7 +17,7 @@
 	</c:if>
 </head>
 <body>
-깃테스트
+깃테스트-test입니다-우병길
 <%@ include file="header.jsp" %>
 <%@ include file="content.jsp" %>
 <%@ include file="footer.jsp" %>
