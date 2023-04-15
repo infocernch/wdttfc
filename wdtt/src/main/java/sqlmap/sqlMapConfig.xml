@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- 알리아스 설정 -->
+	<typeAliases>
+	</typeAliases>
+	<!-- db연결 참조코드(context.xml과 연결됨, dbcp의 리소스이름인 oraDB가 중요) -->
+	<environments default="">
+		<environment id="">
+			<transactionManager type="JDBC" />
+			<dataSource type="JNDI">
+				<property name="data_source" 
+					value="java:comp/env/oraDB" />
+			</dataSource>
+		</environment>
+	</environments>
+	<!-- 실제 sql query -->
+	<mappers>
+	
+	 <mapper resource="/wdtt/mapper/wdtt.xml"/>
+	 <mapper resource="/wdtt/mapper/wdttInfo.xml"/>
+	 <mapper resource="/wdtt/mapper/wdttInfo.xml"/>
+	 <mapper resource="/wdtt/mapper/newsBoard.xml"/>
+	 
+	</mappers>
+</configuration>

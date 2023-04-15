@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="news">
+<!-- 리스트 -->
+ <select id="list" resultType="wdtt.dto.WdttNewsDTO">
+ WITH numbered_table AS (
+  SELECT num, writer, join_date, title, readcount, content,
+         ROW_NUMBER() OVER (ORDER BY num DESC) AS row_num
+  FROM wdttnews
+)
+SELECT num, writer, join_date, title, readcount, content
+FROM numbered_table
+WHERE row_num BETWEEN #{start} AND #{end}
+ </select>
+ 
+  <!-- 게시물 갯수 계산  -->
+ <select id="count" resultType="int">
+  select count(*) from wdttnews
+ </select>
+</mapper>

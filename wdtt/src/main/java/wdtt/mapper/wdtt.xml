@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="wdtt">
+ <select id="login_check" resultType="int">
+  select count(*) from wdtt
+  where userid=#{userid} and passwd=#{passwd}
+ </select>
+<insert id="signUp">
+   insert into wdtt (userid,passwd,name,tel,mng,lv) 
+   values(#{userid},#{passwd},#{name},#{tel},#{mng},#{lv})
+</insert>
+<select id="idCheck" resultType="int">
+	select count(*) from wdtt
+	where userid=#{userid}
+</select>
+<delete id="signOut">
+  delete from wdtt where userid = #{userid}
+</delete>
+ 
+</mapper>
