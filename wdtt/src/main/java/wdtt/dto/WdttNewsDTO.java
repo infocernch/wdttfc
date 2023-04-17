@@ -1,9 +1,11 @@
 package wdtt.dto;
 
+import java.util.Date;
+
 public class WdttNewsDTO {
 	private int num; //게시물번호
 	private String writer; //글쓴이 wdtt/userid와 외래키
-	private String join_date; //올린날
+	private Date join_date; //올린날
 	private String title; //제목
 	private int readcount; //조회수
 	private String content; //본문
@@ -11,6 +13,18 @@ public class WdttNewsDTO {
 	private int filesize;
 	private String ext; //첨부파일의 확장자, 테이블에는 없음
 	//게더세더,. ...
+	
+	
+	
+	@Override
+	public String toString() {
+		return "WdttNewsDTO [num=" + num + ", writer=" + writer + ", join_date=" + join_date + ", title=" + title
+				+ ", readcount=" + readcount + ", content=" + content + ", filename=" + filename + ", filesize="
+				+ filesize + ", ext=" + ext + "]";
+	}
+	public WdttNewsDTO() {
+		
+	}
 	public int getNum() {
 		return num;
 	}
@@ -23,10 +37,10 @@ public class WdttNewsDTO {
 	public void setWriter(String writer) {
 		this.writer = writer;
 	}
-	public String getJoin_date() {
+	public Date getJoin_date() {
 		return join_date;
 	}
-	public void setJoin_date(String join_date) {
+	public void setJoin_date(Date join_date) {
 		this.join_date = join_date;
 	}
 	public String getTitle() {
@@ -65,25 +79,5 @@ public class WdttNewsDTO {
 	public void setExt(String ext) {
 		this.ext = ext;
 	}
-	@Override
-	public String toString() {
-		return "WdttNewsDTO [num=" + num + ", writer=" + writer + ", join_date=" + join_date + ", title=" + title
-				+ ", readcount=" + readcount + ", content=" + content + ", filename=" + filename + ", filesize="
-				+ filesize + ", ext=" + ext + "]";
-	}
-	public WdttNewsDTO() {
-	
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }

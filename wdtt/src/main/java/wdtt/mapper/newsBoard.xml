@@ -18,4 +18,19 @@ WHERE row_num BETWEEN #{start} AND #{end}
  <select id="count" resultType="int">
   select count(*) from wdttnews
  </select>
+ 
+ <insert id="insertNews">
+ 	insert into wdttnews(num,writer,title,content,filename)
+	values((select nvl(max(num)+1,1)from wdttnews),#{writer},#{title},#{content},#{filename})
+ </insert>
+ 
+ <select id="viewNews" resultType="wdtt.dto.WdttNewsDTO">
+ select num,writer,join_date,title,readcount,content,filename,filesize,readcount
+ from wdttnews
+ where num=#{num}
+ </select>
+ 
+ <update id="readcount">
+   update wdttnews set readcount=readcount+1 where num=#{num}
+ </update>
 </mapper>

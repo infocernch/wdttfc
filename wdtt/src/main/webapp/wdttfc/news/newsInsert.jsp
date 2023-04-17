@@ -21,7 +21,7 @@ function listNews() {
 <body>
 <%@ include file="../header.jsp" %>
 <h2>뉴스 올리기</h2>
-<form name="form1" id="form1" action="${path}/news_servlet/insert.do">
+<form name="form1" method="post" id="form1" action="${path}/news_servlet/insert.do" enctype="multipart/form-data">
 <table border="1">
 <tr>
 	<td>작성자 :<input readonly value="${sessionScope.userid }" name="userid" id="userid"></td>

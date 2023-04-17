@@ -1,6 +1,8 @@
 package wdtt;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -9,7 +11,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
+import common.Constants;
 import page.Pager;
 import wdtt.dao.NewsDAO;
 import wdtt.dto.WdttNewsDTO;
@@ -36,7 +43,7 @@ public class NewsController extends HttpServlet {
 				else if(url.indexOf("newsList.do")!= -1) {//뉴스목록
 						//레코드 갯수 계산
 						int count=dao.count();
-						System.out.println("레코드 수:"+count);
+//						System.out.println("레코드 수:"+count);
 						//페이지 나누기
 						int curPage=1;
 						if(request.getParameter("curPage")!=null) {
@@ -53,23 +60,67 @@ public class NewsController extends HttpServlet {
 						RequestDispatcher rd=request.getRequestDispatcher(page);
 						rd.forward(request, response);
 				}else if(url.indexOf("insert.do")!= -1) {
-					String userid = request.getParameter("userid");
-					String file = request.getParameter("file");
-					String title = request.getParameter("title");
-					String content = request.getParameter("content");
-//					System.out.println("id:"+userid);
-//					System.out.println("file:"+file);
-//					System.out.println("title:"+title);
-//					System.out.println("content:"+content);
+					File uploadDir=new File(Constants.UPLOAD_PATH);
+					if(!uploadDir.exists()) {
+						uploadDir.mkdir();
+					}
+					MultipartRequest multi=new MultipartRequest(request, Constants.UPLOAD_PATH, 
+							Constants.MAX_UPLOAD, "utf-8", new DefaultFileRenamePolicy());
+					String userid = multi.getParameter("userid");
+					String title = multi.getParameter("title");
+					String content = multi.getParameter("content");
+				
+					
+					int filesize=0;
+					String filename=" ";
+					try {
+						Enumeration files = multi.getFileNames();
+						while(files.hasMoreElements()) {
+							String file1=(String)files.nextElement();
+							filename = multi.getFilesystemName(file1);
+							File f1 = multi.getFile(file1);
+							if(f1 != null) {
+								filesize=(int)f1.length();
+							}
+						}
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
 					WdttNewsDTO dto = new WdttNewsDTO();
 					dto.setWriter(userid);
-					dto.setFilename(file);
+					dto.setFilename(filename);
 					dto.setTitle(title);
 					dto.setContent(content);
+					if(filename == null||filename.trim().equals("")) {
+						filename="-";
+					}
+					dto.setFilename(filename);
+					dto.setFilesize(filesize);
+//					System.out.println("id:"+userid);
+//					System.out.println("file:"+filename);
+//					System.out.println("title:"+title);
+//					System.out.println("content:"+content);
 					dao.insertNews(dto);
 					
-					response.sendRedirect("/news_servlet/newsList.do");
+					page="/news_servlet/newsList.do";
+					response.sendRedirect(contextPath+page);
+				}else if(url.indexOf("view.do")!= -1) {
+						int num = Integer.parseInt(request.getParameter("num"));
+						System.out.println("리드카운트로 받은 넘값:"+num);
+						HttpSession session = request.getSession();
+						
+						dao.readcount(num, session);
+						List<WdttNewsDTO> list = dao.view(num);
+						request.setAttribute("list", list);
+						page = "/wdttfc/news/viewNews.jsp";
+						RequestDispatcher rd = request.getRequestDispatcher(page);
+						rd.forward(request, response);
+					
+					
+					
 				}
+				
+				
 	}
 
 	

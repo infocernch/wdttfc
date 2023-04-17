@@ -5,21 +5,32 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>송성혜최고멋쟁이</title>
-<%@ include file="../include/header.jsp"%>
+<title>Insert title here</title>
+<%@ include file="../../include/header.jsp"%>
+
 <link href="${path}/wdttfc/css/bootstrap.min.css" rel="stylesheet">
 <link href="${path}/wdttfc/css/carousel.css" rel="stylesheet">
 <link href="${path}/wdttfc/css/carousel.rtl.css" rel="stylesheet">
-<c:if test="${param.message == 'success' }">
-		<script type="text/javascript">
-			alert("회원가입에 성공하셨습니다.");
-		</script>
-	</c:if>
 </head>
 <body>
-<%@ include file="header.jsp" %>
-<%@ include file="content.jsp" %>
-<%@ include file="footer.jsp" %>
+<c:forEach var="dto" items="${list}">
+<table border="1">
+<tr>
+	<td>${dto.title}</td>
+</tr>
+<tr>
+	<c:set var="imageFileName" value="${dto.filename}"/>
+	<c:set var="imagePath" value="C:/upload_wdtt/${imageFileName}"/>
+	<td><img src="${imagePath}" alt="실패ㅠㅠ"></td>
+	<td>${dto.filename}</td>
+</tr>
+
+</table>
+
+</c:forEach>
+
+
+
 
 </body>
 </html>

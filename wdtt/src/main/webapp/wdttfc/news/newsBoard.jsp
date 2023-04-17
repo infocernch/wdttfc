@@ -15,8 +15,20 @@ function list(page) {
 function insert() {
 	location.href="${path}/wdttfc/news/newsInsert.jsp";
 }
+function view(num){
+	$.ajax({
+		type:"post",
+		url:"${path}/news_servlet/view.do",
+		data:{num:num},
+		success: function(result) {
+			$("#viewNews").html(result);
+		}
+	});
+}
+
+
+
 </script>
-<%@ include file="../../include/header.jsp"%>
 <link href="${path}/wdttfc/css/bootstrap.min.css" rel="stylesheet">
 <link href="${path}/wdttfc/css/carousel.css" rel="stylesheet">
 <link href="${path}/wdttfc/css/carousel.rtl.css" rel="stylesheet">
@@ -41,6 +53,7 @@ function insert() {
     <th>글쓴이</th>
     <th>제목</th>
     <th>날짜</th>
+    <th>&nbsp;</th>
     <th>조회수</th>
   </tr>
 <c:forEach var="dto" items="${list}">
@@ -48,7 +61,9 @@ function insert() {
     <td>${dto.num}</td>
     <td>${dto.writer}</td>
     <td>${dto.title}</td>
-    <td>${dto.join_date}</td>
+    <td> <fmt:formatDate value="${dto.join_date}" pattern="yyyy-MM-dd"/> </td>
+    <td><input type="button" onclick="view('${dto.num}')" value="자세히">
+    </td>
     <td>${dto.readcount}</td>
   </tr>
 </c:forEach>
@@ -86,7 +101,7 @@ function insert() {
  </table>
  
  
- 
+ <div id="viewNews" style="margin-top: 100px;"></div>
  
  <%@ include file="../footer.jsp" %>
 </body>
