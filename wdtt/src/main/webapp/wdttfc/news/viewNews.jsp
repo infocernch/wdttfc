@@ -19,9 +19,7 @@
 	<td>${dto.title}</td>
 </tr>
 <tr>
-	<c:set var="imageFileName" value="${dto.filename}"/>
-	<c:set var="imagePath" value="C:/upload_wdtt/${imageFileName}"/>
-	<td><img src="${imagePath}" alt="실패ㅠㅠ"></td>
+	<td><img src="${path}/news_servlet/file.do?num=${dto.num}" alt="실패ㅠㅠ"></td>
 	<td>${dto.filename}</td>
 </tr>
 

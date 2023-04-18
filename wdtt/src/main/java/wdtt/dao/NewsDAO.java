@@ -71,6 +71,14 @@ public class NewsDAO {
 		}	
 	}
 
+	public String getFileName(int num) {
+		String result = "";
+		try(SqlSession session=MybatisManager.getInstance().openSession()){
+			result = session.selectOne("news.getFileName",num);
+		}
+		return result;
+	}
+
 	
 	
 }

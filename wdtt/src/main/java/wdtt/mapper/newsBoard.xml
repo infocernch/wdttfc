@@ -33,4 +33,8 @@ WHERE row_num BETWEEN #{start} AND #{end}
  <update id="readcount">
    update wdttnews set readcount=readcount+1 where num=#{num}
  </update>
+ 
+ <select id="getFileName" resultType="String">
+  select filename from wdttnews where num=#{num}
+ </select>
 </mapper>

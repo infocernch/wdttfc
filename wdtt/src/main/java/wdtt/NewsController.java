@@ -1,7 +1,9 @@
 package wdtt;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Enumeration;
 import java.util.List;
 
@@ -106,18 +108,45 @@ public class NewsController extends HttpServlet {
 					response.sendRedirect(contextPath+page);
 				}else if(url.indexOf("view.do")!= -1) {
 						int num = Integer.parseInt(request.getParameter("num"));
-						System.out.println("리드카운트로 받은 넘값:"+num);
+//						System.out.println("리드카운트로 받은 넘값:"+num);
 						HttpSession session = request.getSession();
 						
-						dao.readcount(num, session);
-						List<WdttNewsDTO> list = dao.view(num);
+						
+						
+						
+						dao.readcount(num, session);//조회수
+						List<WdttNewsDTO> list = dao.view(num);//본문
 						request.setAttribute("list", list);
+						
+						
+						
+						
 						page = "/wdttfc/news/viewNews.jsp";
 						RequestDispatcher rd = request.getRequestDispatcher(page);
-						rd.forward(request, response);
+						rd.forward(request, response);//포워딩
 					
+				}else if(url.indexOf("file.do")!= -1) {
+					int num = Integer.parseInt(request.getParameter("num"));
+//					System.out.println("리드카운트로 받은 넘값:"+num);
 					
-					
+					//upload_wdtt에 있는 사진 가져와서 화면단에 표출하기
+					String filename=dao.getFileName(num);
+					String path=Constants.UPLOAD_PATH+filename;
+//					System.out.println("이미지 패스값:"+path);
+					FileInputStream fis = new FileInputStream(path);
+					OutputStream out = response.getOutputStream();
+					filename = new String(filename.getBytes("utf-8"),"8859_1");//추가코드
+					response.setHeader("Content-Disposition", "attachment;filename="+filename);
+					byte b[] = new byte[4096];
+					int numRead;
+					while(true) {
+						numRead = fis.read(b, 0, b.length);
+						if(numRead == -1) break;
+						out.write(b, 0, numRead);
+					}
+					out.flush();
+					out.close();
+					fis.close();
 				}
 				
 				
