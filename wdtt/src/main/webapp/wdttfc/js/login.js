@@ -1,6 +1,6 @@
 $(function() {
 			$("#btnSignUp").click(function() {
-				location.href="signUp.jsp";
+				location.href="wdtt/wdttfc/signUp.jsp";
 			});
 		});
 

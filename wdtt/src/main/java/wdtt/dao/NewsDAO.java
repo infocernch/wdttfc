@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.ibatis.session.SqlSession;
 
 import sqlmap.MybatisManager;
+import wdtt.dto.WdttDTO;
 import wdtt.dto.WdttNewsDTO;
 
 public class NewsDAO {
@@ -78,6 +79,20 @@ public class NewsDAO {
 		}
 		return result;
 	}
+
+	public List<WdttNewsDTO> myWrite(int start,int end,String userid) {
+		List<WdttNewsDTO> list = null;
+		try(SqlSession session=MybatisManager.getInstance().openSession()){
+			Map<String,Object> map = new HashMap<>();
+			map.put("userid", userid);
+			map.put("start", start);
+			map.put("end", end);
+			list = session.selectList("news.myWrite",map);
+		}
+		return list;
+	}
+
+
 
 	
 	

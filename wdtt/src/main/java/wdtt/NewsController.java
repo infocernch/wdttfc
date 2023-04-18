@@ -21,6 +21,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import common.Constants;
 import page.Pager;
 import wdtt.dao.NewsDAO;
+import wdtt.dto.WdttDTO;
 import wdtt.dto.WdttNewsDTO;
 
 
@@ -147,6 +148,34 @@ public class NewsController extends HttpServlet {
 					out.flush();
 					out.close();
 					fis.close();
+				}else if(url.indexOf("myWrite.do")!= -1) {//내가 쓴 글 목록
+					//레코드 갯수 계산
+					int count=dao.count();
+					//페이지 나누기
+					int curPage=1;
+					if(request.getParameter("curPage")!=null) {
+						curPage=Integer.parseInt(request.getParameter("curPage"));
+					}
+					Pager pager=new Pager(count,curPage);
+					int start=pager.getPageBegin();
+					int end=pager.getPageEnd();
+					//리스트
+					HttpSession session = request.getSession();
+					String userid=(String)session.getAttribute("userid");
+					List<WdttNewsDTO> list = dao.myWrite(start,end,userid);
+					request.setAttribute("list", list);
+					request.setAttribute("page", pager);
+					page="/wdttfc/info/myWrite_result.jsp";
+					RequestDispatcher rd=request.getRequestDispatcher(page);
+					rd.forward(request, response);
+				}else if(url.indexOf("modify.do")!= -1) {
+					HttpSession session = request.getSession();
+					String userid = (String)session.getAttribute("userid");
+					int num = Integer.parseInt(request.getParameter("num"));
+					System.out.println("userid값:"+userid);
+					System.out.println("글번호값:"+num);
+					System.out.println(userid);
+					System.out.println(num);
 				}
 				
 				

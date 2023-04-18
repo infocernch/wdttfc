@@ -7,8 +7,12 @@ public class WdttDTO {
 	private String tel;
 	private String mng;
 	private String lv;
-	
-	
+	private String sessionUserid; //세션확인용 아이디
+	@Override
+	public String toString() {
+		return "WdttDTO [userid=" + userid + ", passwd=" + passwd + ", name=" + name + ", tel=" + tel + ", mng=" + mng
+				+ ", lv=" + lv + ", sessionUserid=" + sessionUserid + "]";
+	}
 	public String getUserid() {
 		return userid;
 	}
@@ -45,16 +49,13 @@ public class WdttDTO {
 	public void setLv(String lv) {
 		this.lv = lv;
 	}
-	@Override
-	public String toString() {
-		return "WdttDAO [userid=" + userid + ", passwd=" + passwd + ", name=" + name + ", tel=" + tel + ", mng=" + mng
-				+ ", lv=" + lv + "]";
+	public String getSessionUserid() {
+		return sessionUserid;
 	}
-	public WdttDTO() {
-		super();
-		// TODO Auto-generated constructor stub
+	public void setSessionUserid(String sessionUserid) {
+		this.sessionUserid = sessionUserid;
 	}
-	public WdttDTO(String userid, String passwd, String name, String tel, String mng, String lv) {
+	public WdttDTO(String userid, String passwd, String name, String tel, String mng, String lv, String sessionUserid) {
 		super();
 		this.userid = userid;
 		this.passwd = passwd;
@@ -62,7 +63,14 @@ public class WdttDTO {
 		this.tel = tel;
 		this.mng = mng;
 		this.lv = lv;
+		this.sessionUserid = sessionUserid;
 	}
+	public WdttDTO() {
+	
+	}
+	
+	
+	
 
 	
 	

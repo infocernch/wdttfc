@@ -14,18 +14,20 @@
 </head>
 <body>
 <c:forEach var="dto" items="${list}">
-<table border="1">
-<tr>
-	<td>${dto.title}</td>
-</tr>
-<tr>
-	<td><img src="${path}/news_servlet/file.do?num=${dto.num}" alt="실패ㅠㅠ"></td>
-	<td>${dto.filename}</td>
-</tr>
-
-</table>
-
-</c:forEach>
+		<div class="news" style="align-content : center;">
+			<div class="title"><h3>${dto.title}</h3></div>
+			<div class="content">
+				<img src="${path}/news_servlet/file.do?num=${dto.num}" alt="실패ㅠㅠ" width="70%" height="500"><br>
+				<p>${dto.content}</p>
+			</div>
+			<div>
+				 <p><fmt:formatDate value="${dto.join_date}" pattern="yyyy-MM-dd"/></p>
+			</div>
+			<div>
+				<p>조회수 ${dto.readcount}</p>
+			</div>
+		</div>
+	</c:forEach>
 
 
 

@@ -15,6 +15,11 @@
 			alert("회원가입에 성공하셨습니다.");
 		</script>
 	</c:if>
+<c:if test="${param.message == 'edit' }">
+		<script type="text/javascript">
+			alert("회원정보가 수정되었습니다. 다시 로그인해주세요.");
+		</script>
+	</c:if>
 </head>
 <body>
 <%@ include file="header.jsp" %>

@@ -14,6 +14,32 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/sign-in/">
     <link href="${path}/wdttfc/css/bootstrap.min.css" rel="stylesheet">
     <link href="${path}/wdttfc/css/signin.css" rel="stylesheet">
+    
+    <script type="text/javascript">
+   	function goIndex() {
+		location.href="${path}/wdttfc/index.jsp";
+	}
+    function check() {
+		var userid = $("#userid").val();
+		var passwd = $("#passwd").val();
+		if(userid == ""){
+			alert("아이디를 입력하세요");
+			$("#userid").focus();
+			return false;
+		}
+		if(passwd == ""){
+			alert("비밀번호를 입력하세요");
+			$("#passwd").focus();
+			return false;
+		}
+		return true;
+	}
+    </script>
+    <c:if test="${param.message == 'fail'}">
+    	<script type="text/javascript">
+    		alert("아이디 또는 비밀번호가 일치하지 않습니다.");
+    	</script>
+    </c:if>
   </head>
   <body class="text-center">
     
@@ -23,8 +49,8 @@
     
     
 <main class="form-signin w-100 m-auto">
-  <form method="post" name="form1" id="form1" action="#">
-    <a href="index.jsp"><img class="mb-4" src="${path}/wdttfc/image/wdtt.png" width="72" height="57"></a>
+  <form method="post" name="form1" id="form1" action="${path}/info_servlet/infoEdit.do" onsubmit="return check()">
+    <a href="${path}/wdttfc/index.jsp"><img class="mb-4" src="${path}/wdttfc/image/wdtt.png" width="72" height="57"></a>
     <h1 class="h3 mb-3 fw-normal">회원 정보 수정</h1>
 
     <div class="form-floating">
@@ -38,7 +64,7 @@
 
    
     <button id="edit" class="w-100 btn btn-lg btn-primary"  style="margin-bottom: 10px;">회원 정보 수정</button>
-    <input id="home" type="button" class="w-100 btn btn-lg btn-danger" value="돌아가기">
+    <input id="home" type="button" class="w-100 btn btn-lg btn-danger" onclick="goIndex()"  value="돌아가기">
     <p class="mt-5 mb-3 text-muted">&copy; 2023 wdtt</p>
   </form>
 </main>

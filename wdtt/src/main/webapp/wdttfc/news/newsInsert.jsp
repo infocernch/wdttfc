@@ -28,7 +28,7 @@ function listNews() {
 	<td>제목 :<input id="title" name="title" placeholder="제목을 입력하세요" style="width: 600px;"></td>
 </tr>
 <tr>
-	<td colspan="2" align="center"><input type="file" id="file" name="file"></td>
+	<td colspan="2" align="center"><input type="file" id="file" name="file" accept="image/gif,image/jpeg,image/png"></td>
 </tr>
 <tr>
 	<td colspan="2" align="center"><textarea rows="20" cols="100" name="content"></textarea></td>

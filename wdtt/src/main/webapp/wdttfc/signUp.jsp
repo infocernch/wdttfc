@@ -43,7 +43,6 @@
 			
 		}
     function reCheck() {
-		document.getElementById("userCheck").value="idUnCheck";
 		$("#user").html("<span id='false' style='color:red;'>중복확인을 다시해주세요.</span>");
 	}
 
@@ -70,12 +69,11 @@
     		userid.focus();
     		return false;
     	}
-    	if($("#false").css("color","red")){
-    		console.log('000')
+    	/* if($("#false").css("color","red")){
     		alert("아이디 중복확인을 해주세요");
     		userid.focus();
     		return false;
-    	}
+    	} */
     	if(passwd1.value == ""){
     		alert("비밀번호는 필수 입력입니다.");
     		passwd1.focus();
@@ -116,7 +114,7 @@
     		tel.focus();
     		return false;
     	}
-    	return true;
+    	
 
     }
 
@@ -130,13 +128,31 @@
     </script>
     
   </head>
+  
   <body class="text-center">
     
 <main class="form-signin w-100 m-auto">
-  <form name="form1" method="post" action="${path}/wdtt_servlet/signUp.do" onsubmit="return check()">
-    <a href="index.jsp"><img class="mb-4" src="image/wdtt.png" width="72" height="57"></a>
-    <h1 class="h3 mb-3 fw-normal">회원가입</h1>
 
+
+  <form name="form1" method="post"  
+  <c:choose>
+  <c:when test="${sessionScope.userid==null}">
+   action="${path}/wdtt_servlet/signUp.do" 
+   </c:when>
+   <c:otherwise>
+   action="${path}/info_servlet/updateInfo.do"
+   </c:otherwise>
+   </c:choose>	
+    onsubmit="return check()">
+    <a href="${path}/wdttfc/index.jsp"><img class="mb-4" src="${path}/wdttfc/image/wdtt.png" width="72" height="57"></a>
+	<c:choose>
+	<c:when test="${sessionScope.userid==null}">    
+    <h1 class="h3 mb-3 fw-normal">회원가입</h1>
+    </c:when>
+    <c:otherwise>
+    <h1 class="h3 mb-3 fw-normal">회원정보수정</h1>
+    </c:otherwise>
+	</c:choose>	
     <div class="form-floating">
       		<input id="userid" name="userid" type="text" class="form-control" onkeydown="reCheck()">
       		<input id="btnCheck" type="button" class="btn btn-primary btn-sm" value="중복확인" onclick="idCheck()">
@@ -168,6 +184,8 @@
     <div id="t" style="margin-bottom: 20px;"><span class="tel"></span></div >
     <div class="form-floating">
       
+     <c:choose>
+	<c:when test="${sessionScope.userid==null}">
     <select class="form-select" id="lv" name="lv">
       <option selected="selected" value="1">1티어</option>
       <option value="1.5">1.5티어</option>
@@ -176,18 +194,31 @@
       <option value="3">3티어</option>
     </select>
     <label for="floatingPassword">level</label>
+    </c:when>
+    </c:choose>
     </div>
 	
 	<div class="form-floating">
+	<c:choose>
+	<c:when test="${sessionScope.userid==null}">
       <select class="form-select" id="mng" name="mng">
       <option value="y">Y</option>
       <option selected="selected" value="n">N</option>
     </select>
     <label for="floatingPassword">Manager</label>
+    </c:when>
+    </c:choose>
     </div>
-   
+   <c:choose>
+	<c:when test="${sessionScope.userid==null}">
     <input id="btnSignUp" class="w-100 btn btn-lg btn-primary" value="Sign Up" type="submit"  style="margin-bottom: 10px; margin-top: 10px;" >
     <input id="btnLogin" type="button" class="w-100 btn btn-lg btn-danger" value="Log In">
+    </c:when>
+    <c:otherwise>
+    <input id="editInfo" class="w-100 btn btn-lg btn-primary" value="회원정보 수정하기" type="submit"  style="margin-bottom: 10px; margin-top: 10px;" >
+    <input id="back" type="button" class="w-100 btn btn-lg btn-danger" value="돌아가기">
+    </c:otherwise>
+    </c:choose>
     <p class="mt-5 mb-3 text-muted">&copy; 2023 wdtt</p>
   </form>
 </main>

@@ -19,5 +19,13 @@ public class InfoDAO {
 		return list;
 	}
 
+	public void updateInfo(WdttDTO dto) {
+		try(SqlSession session=MybatisManager.getInstance().openSession()){
+			session.update("wdttInfo.updateInfo",dto);
+			session.commit();
+		}
+		
+	}
+
 
 }

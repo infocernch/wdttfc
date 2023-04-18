@@ -7,5 +7,9 @@
 	from wdtt
 	where userid=#{userid}
  	</select>
- 
+ 	<update id="updateInfo">
+ 	 UPDATE wdtt
+	SET userid = #{userid}, passwd = #{passwd}, tel = #{tel}
+	WHERE userid = #{sessionUserid}
+ 	</update>
 </mapper>

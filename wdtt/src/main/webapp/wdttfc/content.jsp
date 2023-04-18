@@ -65,35 +65,38 @@
     </div>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+       <image href="${path}/wdttfc/image/kilShoot.jpg" width="100%" height="100%" fill="#777"/></svg>
 
         <div class="container">
           <div class="carousel-caption text-start">
-            <h1>Example headline.</h1>
-            <p>Some representative placeholder content for the first slide of the carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
+            <h1>야, 너도 할 수 있어</h1><br>
+            <p>우당탕탕 FC와 함께라면 너도 할 수 있어. 손흥민 박지성 차범근 우병길 let's go</p>
+            <p><a class="btn btn-lg btn-primary" href="${path}/wdttfc/signUp.jsp">회원가입하러가기</a></p>
           </div>
         </div>
       </div>
       <div class="carousel-item">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+         <image href="${path}/wdttfc/image/wow.jpg" width="100%" height="100%" fill="#777"/></svg>
 
         <div class="container">
           <div class="carousel-caption">
-            <h1>Another example headline.</h1>
-            <p>Some representative placeholder content for the second slide of the carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
+            <h1>내가 여기서 뭘 할 수 있는데!?</h1><br>
+            <p>우당탕탕FC 인원들의 자유로운 소통을 확인해 봐, 너도 충분히 할 수 있어 Just Do It!</p>
+            <p><a class="btn btn-lg btn-primary" href="#">확인하러가기</a></p>
           </div>
         </div>
       </div>
       <div class="carousel-item">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+        <image href="${path}/wdttfc/image/big.png" width="100%" height="100%" fill="#777"/></svg>
 
         <div class="container">
           <div class="carousel-caption text-end">
-            <h1>One more for good measure.</h1>
-            <p>Some representative placeholder content for the third slide of this carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
+            <h1>그래서 언제 차는데?</h1><br>
+            <p>매주 금요일 20시 경기도 고양시 덕양구 공양왕길 123-4 (원당동 1037) 왕능골 풋살장에서 보자!</p>
+            <p><a class="btn btn-lg btn-primary" href="${path}/wdttfc/login.jsp">로그인 하러가기</a></p>
           </div>
         </div>
       </div>

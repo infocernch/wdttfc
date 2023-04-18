@@ -37,4 +37,15 @@ WHERE row_num BETWEEN #{start} AND #{end}
  <select id="getFileName" resultType="String">
   select filename from wdttnews where num=#{num}
  </select>
+ 
+ <select id="myWrite" resultType="wdtt.dto.WdttNewsDTO">
+  WITH numbered_table AS (
+  SELECT num, writer, join_date, title, readcount, content,
+         ROW_NUMBER() OVER (ORDER BY num DESC) AS row_num
+  FROM wdttnews
+ )
+ SELECT num, writer, join_date, title, readcount, content
+ FROM numbered_table
+ WHERE writer = #{userid} AND row_num BETWEEN #{start} AND #{end}
+ </select>
 </mapper>

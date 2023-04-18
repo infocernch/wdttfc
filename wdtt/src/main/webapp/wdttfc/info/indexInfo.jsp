@@ -13,7 +13,8 @@
 
 <script type="text/javascript">
 $(function() {
-   myInfo()
+   myInfo();
+   myWrite();
 });
 
 function myInfo() {
@@ -25,6 +26,16 @@ function myInfo() {
       }
    });
 }
+function myWrite() {
+	$.ajax({
+		type:"post",
+		url:"${path}/news_servlet/myWrite.do",
+		success: function (data) {
+			$("#myBoard").html(data);
+		}
+	});
+}
+
 </script>
 
 </head>
@@ -50,7 +61,7 @@ function myInfo() {
          <div class="p-3 border bg-warning"><a href="#" id="showInfo">내 정보</a></div>
       </div>
       <div class="col">
-         <div class="p-3 border bg-warning">내가 올린 글</div>
+         <div class="p-3 border bg-warning"><a href="#" id="myWrite">내가 올린 글</a></div>
       </div>
       <div class="col">
          <div class="p-3 border bg-warning"><a href="${path}/wdttfc/info/edit.jsp">개인정보 수정</a></div>
