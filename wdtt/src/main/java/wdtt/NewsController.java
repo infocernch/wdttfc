@@ -21,7 +21,6 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import common.Constants;
 import page.Pager;
 import wdtt.dao.NewsDAO;
-import wdtt.dto.WdttDTO;
 import wdtt.dto.WdttNewsDTO;
 
 
@@ -172,18 +171,75 @@ public class NewsController extends HttpServlet {
 					HttpSession session = request.getSession();
 					String userid = (String)session.getAttribute("userid");
 					int num = Integer.parseInt(request.getParameter("num"));
-					System.out.println("userid값:"+userid);
-					System.out.println("글번호값:"+num);
-					System.out.println(userid);
-					System.out.println(num);
+					List<WdttNewsDTO> list = dao.modify(num,userid);
+					request.setAttribute("list", list);
+					page="/wdttfc/info/modifyNews.jsp";
+					RequestDispatcher rd=request.getRequestDispatcher(page);
+					rd.forward(request, response);
+				}else if(url.indexOf("updateNews.do")!= -1) {
+					File uploadDir=new File(Constants.UPLOAD_PATH);
+					if(!uploadDir.exists()) {
+						uploadDir.mkdir();
+					}
+					MultipartRequest multi=new MultipartRequest(request, Constants.UPLOAD_PATH, 
+							Constants.MAX_UPLOAD, "utf-8", new DefaultFileRenamePolicy());
+					int num=Integer.parseInt(multi.getParameter("num"));
+					String userid=multi.getParameter("userid");
+					String title=multi.getParameter("title");
+					String content=multi.getParameter("content");
+					String filename=" ";
+					int filesize=0;
+					try {
+						Enumeration files=multi.getFileNames();
+						while(files.hasMoreElements()) {
+							String file1=(String)files.nextElement();
+							filename=multi.getFilesystemName(file1);
+							File f1=multi.getFile(file1);
+							if(f1 != null) {
+								filesize=(int)f1.length();
+							}
+						}
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					WdttNewsDTO dto = new WdttNewsDTO();
+					dto.setNum(num);
+					dto.setWriter(userid);
+					dto.setFilename(filename);
+					dto.setTitle(title);
+					dto.setContent(content);
+					if(filename == null||filename.trim().equals("")) {
+						filename="-";
+					}
+					dto.setFilename(filename);
+					dto.setFilesize(filesize);
+					String fileDel=multi.getParameter("fileDel");
+					if(fileDel != null && fileDel.equals("on")) {
+						String fileName=dao.getFileName(num);
+						File f= new File(Constants.UPLOAD_PATH+fileName);
+						f.delete();
+						dto.setFilename("-");
+						dto.setFilesize(0);
+					}
+					dao.update(dto);
+					
+					page="/wdttfc/news/indexNews.jsp";
+					response.sendRedirect(contextPath+page);
+				}else if(url.indexOf("delete.do")!= -1) {
+					MultipartRequest multi=new MultipartRequest(request, Constants.UPLOAD_PATH, 
+							Constants.MAX_UPLOAD, "utf-8", new DefaultFileRenamePolicy());
+					int num=Integer.parseInt(multi.getParameter("num"));
+					dao.delete(num);
+					page="/wdttfc/news/indexNews.jsp";
+					response.sendRedirect(contextPath+page);
 				}
+				
 				
 				
 	}
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

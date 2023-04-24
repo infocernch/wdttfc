@@ -25,7 +25,7 @@ public class ContentServlet extends HttpServlet {
 				
 				if(url.indexOf("info.do")!= -1) {
 					page="/wdttfc/info/indexInfo.jsp";
-					response.sendRedirect(contextPath + page);
+					response.sendRedirect(contextPath + page+"?curPage=1");
 				}
 	}
 
