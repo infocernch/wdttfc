@@ -119,6 +119,14 @@ public class NewsDAO {
 		
 	}
 
+	public void reset(int num) {//복구
+		try(SqlSession session=MybatisManager.getInstance().openSession()){
+			session.update("news.reset",num);
+			session.commit();
+		}
+		
+	}
+
 
 
 	

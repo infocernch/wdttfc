@@ -232,6 +232,12 @@ public class NewsController extends HttpServlet {
 					dao.delete(num);
 					page="/wdttfc/news/indexNews.jsp";
 					response.sendRedirect(contextPath+page);
+				}else if(url.indexOf("reset.do")!= -1) {
+					int num=Integer.parseInt(request.getParameter("num"));
+					System.out.println(num);
+					dao.reset(num);
+					page="/wdttfc/news/indexNews.jsp";
+					response.sendRedirect(contextPath+page);
 				}
 				
 				

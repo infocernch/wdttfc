@@ -66,4 +66,11 @@ WHERE row_num BETWEEN #{start} AND #{end}
    set show='n'
    where num=#{num}
  </update>
+ 
+  <update id="reset">
+  update wdttnews
+   set show='y'
+   where num=#{num}
+ </update>
+ 
 </mapper>

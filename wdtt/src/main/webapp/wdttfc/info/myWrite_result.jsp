@@ -24,7 +24,7 @@
 		});
 	}
 	function btnReset(num) {
-		
+		location.href="${path}/news_servlet/reset.do?num="+num;
 	}
 	
 </script>
