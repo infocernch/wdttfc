@@ -172,10 +172,11 @@ public class NewsController extends HttpServlet {
 					HttpSession session = request.getSession();
 					String userid = (String)session.getAttribute("userid");
 					int num = Integer.parseInt(request.getParameter("num"));
-					System.out.println("userid값:"+userid);
-					System.out.println("글번호값:"+num);
-					System.out.println(userid);
-					System.out.println(num);
+					List<WdttNewsDTO> list = dao.modify(num,userid);
+					request.setAttribute("list", list);
+					page="/wdttfc/info/modifyNews.jsp";
+					RequestDispatcher rd=request.getRequestDispatcher(page);
+					rd.forward(request, response);
 				}
 				
 				

@@ -11,8 +11,15 @@
 <link href="${path}/wdttfc/css/carousel.css" rel="stylesheet">
 <link href="${path}/wdttfc/css/carousel.rtl.css" rel="stylesheet">
 <script type="text/javascript">
-function modify() {
-	document.form2.submit();
+function btnModify(num){
+	$.ajax({
+		type:"post",
+		url:"${path}/news_servlet/modify.do",
+		data:{num:num},
+		success: function(result) {
+			$("#modify_result").html(result);
+		}
+	});
 }
 
 </script>
@@ -35,15 +42,14 @@ function modify() {
     <td>${dto.title}</td>
     <td> <fmt:formatDate value="${dto.join_date}" pattern="yyyy-MM-dd"/> </td>
     <td>
-    	<form id="form2" name="form2" method="post" action="${path}/news_servlet/modify.do">
-    	<input type="hidden" name="num" id="num" value="${dto.num}">
-    	<input type="button" onclick="modify()" value="수정">
-    	<input type="button" onclick="delete()" value="삭제">
-    	</form>
+    	<input type="button" onclick="btnModify('${dto.num}')" value="수정">
+    	<input type="button" id="btnDelete" value="삭제">
     </td>
     <td>${dto.readcount}</td>
   </tr>
 </c:forEach>
 </table>
+
+<div id="modify_result"></div>
 </body>
 </html>

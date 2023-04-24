@@ -48,4 +48,10 @@ WHERE row_num BETWEEN #{start} AND #{end}
  FROM numbered_table
  WHERE writer = #{userid} AND row_num BETWEEN #{start} AND #{end}
  </select>
+ <select id="modify" resultType="wdtt.dto.WdttNewsDTO">
+ select num,writer,join_date,title,readcount,content,filename,filesize
+ from wdttnews
+ where num=#{num} and writer=#{userid}
+ </select>
+ 
 </mapper>
