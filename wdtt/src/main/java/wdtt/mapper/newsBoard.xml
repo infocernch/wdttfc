@@ -5,11 +5,11 @@
 <!-- 리스트 -->
  <select id="list" resultType="wdtt.dto.WdttNewsDTO">
  WITH numbered_table AS (
-  SELECT num, writer, join_date, title, readcount, content,show,
+  SELECT num, writer, join_date, title, readcount, content,
          ROW_NUMBER() OVER (ORDER BY num DESC) AS row_num
   FROM wdttnews
 )
-SELECT num, writer, join_date, title, readcount, content,show
+SELECT num, writer, join_date, title, readcount, content
 FROM numbered_table
 WHERE row_num BETWEEN #{start} AND #{end}
  </select>
@@ -40,30 +40,12 @@ WHERE row_num BETWEEN #{start} AND #{end}
  
  <select id="myWrite" resultType="wdtt.dto.WdttNewsDTO">
   WITH numbered_table AS (
-  SELECT num, writer, join_date, title, readcount, content,show,
+  SELECT num, writer, join_date, title, readcount, content,
          ROW_NUMBER() OVER (ORDER BY num DESC) AS row_num
   FROM wdttnews
  )
- SELECT num, writer, join_date, title, readcount, content,show
+ SELECT num, writer, join_date, title, readcount, content
  FROM numbered_table
  WHERE writer = #{userid} AND row_num BETWEEN #{start} AND #{end}
  </select>
- <select id="modify" resultType="wdtt.dto.WdttNewsDTO">
- select num,writer,join_date,title,readcount,content,filename,filesize
- from wdttnews
- where num=#{num} and writer=#{userid}
- </select>
- 
- <update id="update">
-   update wdttnews
-		set writer=#{writer}, title=#{title}
-			, content=#{content}, filename=#{filename}
-			, filesize=#{filesize}
-		where num=#{num}
- </update>
- <update id="delete">
-  update wdttnews
-   set show='n'
-   where num=#{num}
- </update>
 </mapper>

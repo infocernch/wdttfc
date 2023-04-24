@@ -57,8 +57,6 @@ function view(num){
     <th>조회수</th>
   </tr>
 <c:forEach var="dto" items="${list}">
-<c:choose>
-<c:when test="${dto.show=='y'}">
   <tr>
     <td>${dto.num}</td>
     <td>${dto.writer}</td>
@@ -68,14 +66,8 @@ function view(num){
     </td>
     <td>${dto.readcount}</td>
   </tr>
-  </c:when>
-  <c:otherwise>
-  <tr>
-  <td>삭제된 게시글입니다.</td>
-  </tr>
-  </c:otherwise>
-</c:choose>
 </c:forEach>
+
 	<tr>
   <td colspan="9" align="center">
   <!-- onclick시 index.jsp의 자동 호출되었던 메모리에 기억하고 있는 function list(curPage)를 호출한다. -->

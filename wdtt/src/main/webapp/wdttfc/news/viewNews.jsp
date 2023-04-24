@@ -17,14 +17,7 @@
 		<div class="news" style="align-content : center;">
 			<div class="title"><h3>${dto.title}</h3></div>
 			<div class="content">
-				<c:choose>
-				<c:when test="${dto.filename!=null || '-' }">
-				<img src="${path}/news_servlet/file.do?num=${dto.num}" width="70%" height="500"><br>
-				</c:when>
-				<c:otherwise>
-				<br>
-				</c:otherwise>
-				</c:choose>
+				<img src="${path}/news_servlet/file.do?num=${dto.num}" alt="실패ㅠㅠ" width="70%" height="500"><br>
 				<p>${dto.content}</p>
 			</div>
 			<div>

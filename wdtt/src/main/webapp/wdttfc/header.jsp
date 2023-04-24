@@ -28,7 +28,7 @@
     	});
       </script>
 
-   	 <div id="top">
+   	 <div>
    	 	<h2>우당탕탕FC</h2>
    	 </div>
    	 <c:choose>
