@@ -12,19 +12,8 @@ public class WdttNewsDTO {
 	private String filename;
 	private int filesize;
 	private String ext; //첨부파일의 확장자, 테이블에는 없음
+	private String show;
 	//게더세더,. ...
-	
-	
-	
-	@Override
-	public String toString() {
-		return "WdttNewsDTO [num=" + num + ", writer=" + writer + ", join_date=" + join_date + ", title=" + title
-				+ ", readcount=" + readcount + ", content=" + content + ", filename=" + filename + ", filesize="
-				+ filesize + ", ext=" + ext + "]";
-	}
-	public WdttNewsDTO() {
-		
-	}
 	public int getNum() {
 		return num;
 	}
@@ -79,5 +68,35 @@ public class WdttNewsDTO {
 	public void setExt(String ext) {
 		this.ext = ext;
 	}
+	public String getShow() {
+		return show;
+	}
+	public void setShow(String show) {
+		this.show = show;
+	}
+	public WdttNewsDTO() {
+		
+	}
+	public WdttNewsDTO(int num, String writer, Date join_date, String title, int readcount, String content,
+			String filename, int filesize, String ext, String show) {
+		super();
+		this.num = num;
+		this.writer = writer;
+		this.join_date = join_date;
+		this.title = title;
+		this.readcount = readcount;
+		this.content = content;
+		this.filename = filename;
+		this.filesize = filesize;
+		this.ext = ext;
+		this.show = show;
+	}
+	
+	
+	
+	
+	
 	
 }
+	
+	

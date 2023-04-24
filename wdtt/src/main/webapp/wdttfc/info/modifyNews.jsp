@@ -10,6 +10,7 @@
 <link href="${path}/wdttfc/css/bootstrap.min.css" rel="stylesheet">
 <link href="${path}/wdttfc/css/carousel.css" rel="stylesheet">
 <link href="${path}/wdttfc/css/carousel.rtl.css" rel="stylesheet">
+
 <script type="text/javascript">
 
 
@@ -19,13 +20,23 @@ function listNews() {
 		location.href="${path}/wdttfc/info/indexInfo.jsp";
 	}
 }
+$(function() {
+	$("#btnDelete").click(function() {
+		if(confirm("정말 삭제하시겠습니까?")){
+			document.form1.action="${path}/news_servlet/delete.do";
+			document.form1.submit();
+		}
+	});
+});
+
+
 </script>
 </head>
 <body>
 
 <c:forEach var="dto" items="${list}">
 <h2>내가 올린 글 수정하기</h2>
-<form name="form1" method="post" id="form1" action="${path}/news_servlet/insert.do" enctype="multipart/form-data">
+<form name="form1" method="post" id="form1" action="${path}/news_servlet/updateNews.do" enctype="multipart/form-data">
 <table border="1">
 <tr>
 	<td>작성자 :<input readonly value="${sessionScope.userid }" name="userid" id="userid"></td>
@@ -33,10 +44,14 @@ function listNews() {
 </tr>
 <tr>
 	<td colspan="2" align="center">
-	<c:if test="${dto.filename !=''}">
-	 ${dto.filename}
-	<input type="file" id="file" name="file" accept="image/gif,image/jpeg,image/png">
+	<input type="file" id="file" name="file" accept="image/gif,image/jpeg,image/png" >
+	<c:if test="${dto.filename != null}">
+	<td>
+	<p>첨부파일 삭제<input type="checkbox" name="fileDel">${dto.filename} </p>
+	</td>
 	</c:if>
+	
+	
 	</td>
 	
 </tr>
@@ -45,8 +60,13 @@ function listNews() {
 </tr>
 
 <tr>
-	<td align="right"><input type="button" value="뒤로가기" onclick="listNews()"></td>
-	<td align="right"><input type="submit" value="작성하기"></td>
+	
+	<td><input type="button" value="뒤로가기" onclick="listNews()"></td>
+	<td align="right">
+	<input type="hidden" name="num" value="${dto.num}">
+	<input type="submit" value="작성하기">
+	<input id="btnDelete" type="button" value="삭제하기">
+	</td>
 </tr>
 
 </table>

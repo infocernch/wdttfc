@@ -80,7 +80,7 @@ public class NewsDAO {
 		return result;
 	}
 
-	public List<WdttNewsDTO> myWrite(int start,int end,String userid) {
+	public List<WdttNewsDTO> myWrite(int start,int end,String userid) {//내가 쓴 글
 		List<WdttNewsDTO> list = null;
 		try(SqlSession session=MybatisManager.getInstance().openSession()){
 			Map<String,Object> map = new HashMap<>();
@@ -92,7 +92,7 @@ public class NewsDAO {
 		return list;
 	}
 
-	public List<WdttNewsDTO> modify(int num, String userid) {
+	public List<WdttNewsDTO> modify(int num, String userid) {//게시글수정
 		List<WdttNewsDTO> list = null;
 		try(SqlSession session=MybatisManager.getInstance().openSession()){
 			Map<String,Object> map = new HashMap<>();
@@ -101,6 +101,22 @@ public class NewsDAO {
 			list = session.selectList("news.modify",map);
 		}
 		return list;
+	}
+
+	public void update(WdttNewsDTO dto) {
+		try(SqlSession session=MybatisManager.getInstance().openSession()){
+			session.update("news.update",dto);
+			session.commit();
+		}
+		
+	}
+
+	public void delete(int num) {
+		try(SqlSession session=MybatisManager.getInstance().openSession()){
+			session.update("news.delete",num);
+			session.commit();
+		}
+		
 	}
 
 

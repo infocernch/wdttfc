@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import page.Pager;
 import wdtt.dao.InfoDAO;
 import wdtt.dao.WdttDAO;
 import wdtt.dto.WdttDTO;
@@ -92,7 +93,31 @@ public class InfoController extends HttpServlet {
 			page="/wdttfc/index.jsp";
 			String message="edit";
 			response.sendRedirect(contextPath+page+"?message="+message);
+		}else if(url.indexOf("showTeam.do")!= -1) {
+			HttpSession session = request.getSession();
+			String userid = (String)session.getAttribute("userid");
+			//레코드 갯수 계산
+			int count=dao.count(userid);
+			//페이지 나누기
+			int curPage=1;
+			if(request.getParameter("curPage")!=null) {
+				curPage=Integer.parseInt(request.getParameter("curPage"));
+			}
+			Pager pager=new Pager(count,curPage);
+			int start=pager.getPageBegin();
+			int end=pager.getPageEnd();
+			
+			
+			
+			List<WdttDTO> list = dao.listTeam(userid,start,end);
+			request.setAttribute("list", list);
+			request.setAttribute("page", pager);
+			
+			page="/wdttfc/info/teamList.jsp";
+			RequestDispatcher rd = request.getRequestDispatcher(page);
+			rd.forward(request, response);
 		}
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

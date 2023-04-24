@@ -14,6 +14,7 @@
 <script type="text/javascript">
 $(function() {
    myInfo();
+   showTeam();
    myWrite();
 });
 
@@ -26,6 +27,21 @@ function myInfo() {
       }
    });
 }
+
+
+ function showTeam() {
+	 var curPage = ${param["curPage"]};
+	  if(curPage == null){
+	    curPage = 1;
+	  }
+	$.ajax({
+		type:"post",
+		url:"${path}/info_servlet/showTeam.do?curPage="+curPage,
+		success: function (data) {
+			$("#team").html(data);
+		}
+	});
+} 
 function myWrite() {
 	$.ajax({
 		type:"post",
@@ -35,6 +51,7 @@ function myWrite() {
 		}
 	});
 }
+
 
 </script>
 
@@ -58,10 +75,10 @@ function myWrite() {
       
       <div class="container-fluid  text-light row gx-5">
       <div class="col">
-         <div class="p-3 border bg-warning"><a href="#" id="showInfo">내 정보</a></div>
+         <div class="p-3 border bg-warning"><a href="${'#myInfo'}" id="showInfo">내 정보 및 팀원 정보</a></div>
       </div>
       <div class="col">
-         <div class="p-3 border bg-warning"><a href="#" id="myWrite">내가 올린 글</a></div>
+         <div class="p-3 border bg-warning"><a href="${'#myBoard'}" id="myWrite">내가 올린 글</a></div>
       </div>
       <div class="col">
          <div class="p-3 border bg-warning"><a href="${path}/wdttfc/info/edit.jsp">개인정보 수정</a></div>
@@ -71,9 +88,9 @@ function myWrite() {
 
 
 <div id="myInfo"></div>
+<div id="team"></div>
 <div id="myBoard"></div>
-
-
+<div><a href="${'#top'}">맨 위로</a></div>
 
 <%@ include file="../footer.jsp" %>
 
