@@ -9,7 +9,6 @@ import javax.servlet.http.HttpSession;
 import org.apache.ibatis.session.SqlSession;
 
 import sqlmap.MybatisManager;
-import wdtt.dto.WdttDTO;
 import wdtt.dto.WdttNewsDTO;
 
 public class NewsDAO {
@@ -125,6 +124,20 @@ public class NewsDAO {
 			session.commit();
 		}
 		
+	}
+
+	public List<WdttNewsDTO> searchList(String search_option, String keyword) {
+		List<WdttNewsDTO> list=null;
+		try(SqlSession session=MybatisManager.getInstance().openSession()){
+			Map<String,String> map = new HashMap<>();
+			map.put("search_option", search_option);
+			map.put("keyword", "%"+keyword+"%");
+			list=session.selectList("news.searchList",map);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return list;
 	}
 
 

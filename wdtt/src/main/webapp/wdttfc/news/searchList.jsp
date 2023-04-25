@@ -107,10 +107,10 @@
 		<form action="${path}/news_servlet/search.do" name="form1"
 			method="post">
 			<select name="search_option">
-				<option value="writer">글쓴이</option>
+				<option value="writer">이름</option>
 				<option value="title">제목</option>
 				<option value="content">내용</option>
-				<option value="all">글쓴이+제목+내용</option>
+				<option value="all">이름+제목+내용</option>
 			</select> <input name="keyword">
 			<button id="btnSearch">검색</button>
 		</form>

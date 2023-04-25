@@ -21,6 +21,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import common.Constants;
 import page.Pager;
 import wdtt.dao.NewsDAO;
+import wdtt.dto.WdttDTO;
 import wdtt.dto.WdttNewsDTO;
 
 
@@ -238,6 +239,18 @@ public class NewsController extends HttpServlet {
 					dao.reset(num);
 					page="/wdttfc/news/indexNews.jsp";
 					response.sendRedirect(contextPath+page);
+				}else if(url.indexOf("search.do")!= -1) {
+					String search_option=request.getParameter("search_option");
+					String keyword=request.getParameter("keyword");
+					
+					List<WdttNewsDTO> list = dao.searchList(search_option,keyword);
+					request.setAttribute("list", list);
+					request.setAttribute("search_option", search_option);
+					request.setAttribute("keyword", keyword);
+					
+					page="/wdttfc/news/searchList.jsp";
+					RequestDispatcher rd =request.getRequestDispatcher(page);
+					rd.forward(request, response);
 				}
 				
 				

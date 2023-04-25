@@ -73,4 +73,28 @@ WHERE row_num BETWEEN #{start} AND #{end}
    where num=#{num}
  </update>
  
+ <select id="searchList" resultType="wdtt.dto.WdttNewsDTO">
+ select num,writer,title,join_date,content,readcount,filename,filesize
+  , show
+  from wdttnews
+  <choose>
+   <when test="search_option != 'all'">
+   	where ${search_option} like #{keyword} and show='y'
+   </when>
+   <otherwise>
+    where ( writer like #{keyword} 
+    or title like #{keyword} 
+    or content like #{keyword}  ) 
+    and show='y'
+   </otherwise>
+  </choose>
+  order by num
+ 
+ 
+ 
+ 
+ 
+ 
+ </select>
+ 
 </mapper>

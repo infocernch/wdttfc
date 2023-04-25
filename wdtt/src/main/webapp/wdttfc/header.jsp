@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+  
      <div class="container">
     	<header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between border-bottom">
       		<a href="${path}/wdttfc/index.jsp" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
@@ -66,8 +67,20 @@
     
     <nav class="container nav justify-content-between">
       <a class="nav-link-item link-secondary" href="${path}/ContentServlet/info.do">내 정보</a>
-      <a class="nav-link-item link-secondary" href="#">커뮤니티</a>
       <a class="nav-link-item link-secondary" href="#">게임</a>
       <a class="nav-link-item link-secondary" href="${path}/news_servlet/news.do">뉴스</a>
-
+      <c:choose>
+      <c:when test="${sessionScope.userid==null}">
+      <a class="nav-link-item link-secondary" href="#" onclick="afterLog()">관리자</a>
+      </c:when>
+      <c:otherwise>
+      <a class="nav-link-item link-secondary" href="${path}/admin_servlet/admin_check.do">관리자</a>
+      </c:otherwise>
+	  </c:choose>
     </nav>
+    
+      <script type="text/javascript">
+	function afterLog() {
+		alert("로그인후에 이용하세요.");
+	}
+	</script>

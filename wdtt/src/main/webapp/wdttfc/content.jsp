@@ -106,7 +106,8 @@
 						<br>
 						<p>우당탕탕FC 인원들의 자유로운 소통을 확인해 봐, 너도 충분히 할 수 있어 Just Do It!</p>
 						<p>
-							<a class="btn btn-lg btn-primary" href="#">확인하러가기</a>
+							<a class="btn btn-lg btn-primary" href="${path}/wdttfc/login.jsp">로그인
+								하러가기</a>
 						</p>
 					</div>
 				</div>
@@ -124,8 +125,7 @@
 						<br>
 						<p>매주 금요일 20시 경기도 고양시 덕양구 공양왕길 123-4 (원당동 1037) 왕능골 풋살장에서 보자!</p>
 						<p>
-							<a class="btn btn-lg btn-primary" href="${path}/wdttfc/login.jsp">로그인
-								하러가기</a>
+							<a class="btn btn-lg btn-primary" href="${path}/news_servlet/newsList.do">확인하러가기</a>
 						</p>
 					</div>
 				</div>

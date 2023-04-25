@@ -2,29 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="wdttInfo">
- 	<select id="info" resultType="wdtt.dto.WdttDTO">
-	select userid,name,tel,mng,lv
-	from wdtt
-	where userid=#{userid}
- 	</select>
- 	
- 	<update id="updateInfo">
- 	 UPDATE wdtt
-	SET userid = #{userid}, passwd = #{passwd}, tel = #{tel}
-	WHERE userid = #{sessionUserid}
- 	</update>
- 	
- 	<select id="teamList" resultType="wdtt.dto.WdttDTO">
- 	 WITH numbered_table AS (
-  SELECT userid, name,tel,mng,lv,  ROW_NUMBER() OVER (ORDER BY userid DESC) AS row_num
-  FROM wdtt
-  )
-  SELECT userid, name, tel, mng, lv
-  FROM numbered_table
-  WHERE userid!=#{userid} and row_num BETWEEN #{start} AND #{end}
- 	</select> 
- 	
- 	<select id="count" resultType="int">
- 	 select count(*) from wdtt where userid!=#{userid}
- 	</select>
+	<select id="info" resultType="wdtt.dto.WdttDTO">
+		select userid,name,tel,mng,lv
+		from wdtt
+		where userid=#{userid}
+	</select>
+
+	<update id="updateInfo">
+		UPDATE wdtt
+		SET userid = #{userid}, passwd = #{passwd}, tel = #{tel}
+		WHERE userid = #{sessionUserid}
+	</update>
+
+	<select id="teamList" resultType="wdtt.dto.WdttDTO">
+		WITH numbered_table AS (
+		SELECT userid, name,tel,mng,lv, ROW_NUMBER() OVER (ORDER BY userid DESC) AS
+		row_num
+		FROM wdtt
+		)
+		SELECT userid, name, tel, mng, lv
+		FROM numbered_table
+		WHERE userid!=#{userid} and row_num BETWEEN #{start} AND #{end}
+	</select>
+
+	<select id="count" resultType="int">
+		select count(*) from wdtt where userid!=#{userid}
+	</select>
 </mapper>

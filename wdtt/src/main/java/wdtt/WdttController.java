@@ -34,7 +34,6 @@ public class WdttController extends HttpServlet {
 			dto.setUserid(userid);
 			dto.setPasswd(passwd);
 			int result = dao.logInCheck(userid, passwd);
-			//System.out.println(result);
 			String page = "";
 			if (result == 1) {// 성공
 				// 세션객체에 저장

@@ -2,20 +2,61 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="wdtt">
- <select id="login_check" resultType="int">
-  select count(*) from wdtt
-  where userid=#{userid} and passwd=#{passwd}
- </select>
-<insert id="signUp">
-   insert into wdtt (userid,passwd,name,tel,mng,lv) 
-   values(#{userid},#{passwd},#{name},#{tel},#{mng},#{lv})
-</insert>
-<select id="idCheck" resultType="int">
-	select count(*) from wdtt
-	where userid=#{userid}
-</select>
-<delete id="signOut">
-  delete from wdtt where userid = #{userid}
-</delete>
- 
+
+	<select id="login_check" resultType="int">
+		select count(*) from wdtt
+		where userid=#{userid} and passwd=#{passwd}
+	</select>
+
+	<insert id="signUp">
+		insert into wdtt (userid,passwd,name,tel,mng,lv)
+		values(#{userid},#{passwd},#{name},#{tel},#{mng},#{lv})
+	</insert>
+
+	<select id="idCheck" resultType="int">
+		select count(*) from wdtt
+		where
+		userid=#{userid}
+	</select>
+
+	<delete id="signOut">
+		delete from wdtt where userid = #{userid}
+	</delete>
+
+	<select id="adminCheck" resultType="String">
+		select mng from wdtt where
+		userid=#{userid}
+	</select>
+
+	<select id="count" resultType="int">
+		select count(*) from wdtt
+	</select>
+
+	<select id="teamList" resultType="wdtt.dto.WdttDTO">
+		WITH numbered_table AS (
+		SELECT
+		userid, name,tel,mng,lv, ROW_NUMBER() OVER (ORDER BY userid DESC) AS
+		row_num
+		FROM wdtt
+		)
+		SELECT userid, name, tel, mng, lv
+		FROM numbered_table
+		WHERE row_num BETWEEN #{start} AND #{end}
+	</select>
+
+	<select id="member" resultType="wdtt.dto.WdttDTO">
+		select userid,name,tel,mng,lv
+		from wdtt
+		where userid=#{userid}
+
+	</select>
+	
+	<update id="edit">
+	   update wdtt
+		set mng=#{mng} , lv=#{lv}
+		where userid=#{userid}
+	</update>
+	
+
+
 </mapper>

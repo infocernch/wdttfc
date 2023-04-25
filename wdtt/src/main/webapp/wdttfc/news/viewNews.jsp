@@ -35,9 +35,29 @@
 			</div>
 		</div>
 	</c:forEach>
+	<hr>
+<form name="form1" action="#">
+	<table>
+		<tr>
+			<td>댓글쓰기</td>
+		</tr>
+		<tr>
+			<td><textarea rows="3px" cols="70%" name="comment"></textarea></td>
+			<td><button>등록</button></td>
+		</tr>
+	</table>
+</form>
 
-
-
+<hr>
+	<table border="1">
+		<tr>
+			<td>글쓴이</td>
+			<td>&nbsp;</td>
+			<td>댓글내용 엄ㅇ니ㅏ럼대</td>
+		</tr>
+	
+	</table>
+<hr>
 
 </body>
 </html>
