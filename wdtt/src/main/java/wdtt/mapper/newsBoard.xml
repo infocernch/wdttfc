@@ -89,12 +89,13 @@ WHERE row_num BETWEEN #{start} AND #{end}
    </otherwise>
   </choose>
   order by num
- 
- 
- 
- 
- 
- 
  </select>
+ 
+ <insert id="insertComment">
+  insert into news_comment
+(comment_num,news_num,writer,content) values
+((select nvl(max(comment_num)+1,1) from news_comment)
+, #{news_num}, #{writer}, #{content})
+ </insert>
  
 </mapper>

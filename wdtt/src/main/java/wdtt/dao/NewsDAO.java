@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.ibatis.session.SqlSession;
 
 import sqlmap.MybatisManager;
+import wdtt.dto.CommentDTO;
 import wdtt.dto.WdttNewsDTO;
 
 public class NewsDAO {
@@ -31,7 +32,9 @@ public class NewsDAO {
 			map.put("end", end);
 			
 			list=session.selectList("news.list",map);
-		}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}	
 		return list;
 	}
 
@@ -39,19 +42,25 @@ public class NewsDAO {
 		try(SqlSession session=MybatisManager.getInstance().openSession()){
 			session.insert("news.insertNews",dto);
 			session.commit();
-		}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}	
 	}
 
 	public void readcount(int num) {
 		try(SqlSession session=MybatisManager.getInstance().openSession()){
 			session.update("news.readcount",num);
 			session.commit();
+		}catch (Exception e) {
+			e.printStackTrace();
 		}	
 	}
 	public List<WdttNewsDTO> view(int num) {
 		List<WdttNewsDTO> list = null;
 		try(SqlSession session=MybatisManager.getInstance().openSession()){
 			list=session.selectList("news.viewNews",num);
+		}catch (Exception e) {
+			e.printStackTrace();
 		}
 		return list;
 	}
@@ -68,6 +77,8 @@ public class NewsDAO {
 				session.commit();
 				count_session.setAttribute("read_time_"+num, current_time);
 			}
+		}catch (Exception e) {
+			e.printStackTrace();
 		}	
 	}
 
@@ -75,6 +86,8 @@ public class NewsDAO {
 		String result = "";
 		try(SqlSession session=MybatisManager.getInstance().openSession()){
 			result = session.selectOne("news.getFileName",num);
+		}catch (Exception e) {
+			e.printStackTrace();
 		}
 		return result;
 	}
@@ -87,6 +100,8 @@ public class NewsDAO {
 			map.put("start", start);
 			map.put("end", end);
 			list = session.selectList("news.myWrite",map);
+		}catch (Exception e) {
+			e.printStackTrace();
 		}
 		return list;
 	}
@@ -98,6 +113,8 @@ public class NewsDAO {
 			map.put("userid", userid);
 			map.put("num",num);
 			list = session.selectList("news.modify",map);
+		}catch (Exception e) {
+			e.printStackTrace();
 		}
 		return list;
 	}
@@ -106,6 +123,8 @@ public class NewsDAO {
 		try(SqlSession session=MybatisManager.getInstance().openSession()){
 			session.update("news.update",dto);
 			session.commit();
+		}catch (Exception e) {
+			e.printStackTrace();
 		}
 		
 	}
@@ -114,6 +133,8 @@ public class NewsDAO {
 		try(SqlSession session=MybatisManager.getInstance().openSession()){
 			session.update("news.delete",num);
 			session.commit();
+		}catch (Exception e) {
+			e.printStackTrace();
 		}
 		
 	}
@@ -122,6 +143,8 @@ public class NewsDAO {
 		try(SqlSession session=MybatisManager.getInstance().openSession()){
 			session.update("news.reset",num);
 			session.commit();
+		}catch (Exception e) {
+			e.printStackTrace();
 		}
 		
 	}
@@ -139,6 +162,11 @@ public class NewsDAO {
 		
 		return list;
 	}
+
+	
+
+	
+
 
 
 

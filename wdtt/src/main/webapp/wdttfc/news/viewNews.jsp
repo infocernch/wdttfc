@@ -11,8 +11,28 @@
 <link href="${path}/wdttfc/css/bootstrap.min.css" rel="stylesheet">
 <link href="${path}/wdttfc/css/carousel.css" rel="stylesheet">
 <link href="${path}/wdttfc/css/carousel.rtl.css" rel="stylesheet">
+<script type="text/javascript">
+$(function() {
+	commentList();
+});
+function commentList() {
+	var num= $("#num").val();
+	$.ajax({
+		type:"post",
+		url:"${path}/news_servlet/commentList.do",
+		data: {news_num:num},
+		success: function(result) {
+			$("#commntList_result").html(result);
+		}
+	});
+}
+
+
+
+</script>
 </head>
 <body>
+<%@ include file="../header.jsp" %>
 <c:forEach var="dto" items="${list}">
 		<div class="news" style="align-content : center;">
 			<div class="title"><h3>${dto.title}</h3></div>
@@ -34,30 +54,18 @@
 				<p>조회수 ${dto.readcount}</p>
 			</div>
 		</div>
-	</c:forEach>
+		<input type="hidden" id="num" value="${dto.num}">
 	<hr>
-<form name="form1" action="#">
-	<table>
-		<tr>
-			<td>댓글쓰기</td>
-		</tr>
-		<tr>
-			<td><textarea rows="3px" cols="70%" name="comment"></textarea></td>
-			<td><button>등록</button></td>
-		</tr>
-	</table>
-</form>
-
-<hr>
-	<table border="1">
-		<tr>
-			<td>글쓴이</td>
-			<td>&nbsp;</td>
-			<td>댓글내용 엄ㅇ니ㅏ럼대</td>
-		</tr>
 	
-	</table>
+	
+
+</c:forEach>
 <hr>
 
+
+	<div id="commntList_result"></div>
+<hr>
+
+<%@ include file="../footer.jsp" %>
 </body>
 </html>

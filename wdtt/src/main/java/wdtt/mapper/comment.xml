@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="comment">
+
+ <insert id="insertComment">
+  insert into news_comment
+(comment_num,news_num,writer,content) values
+((select nvl(max(comment_num)+1,1) from news_comment)
+, #{news_num}, #{writer}, #{content})
+ </insert>
+
+<select id="commentList" resultType="wdtt.dto.CommentDTO">
+ select*from news_comment where news_num=#{news_num}
+</select>
+
+</mapper>

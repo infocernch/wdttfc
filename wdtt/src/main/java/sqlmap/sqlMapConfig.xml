@@ -23,6 +23,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	 <mapper resource="/wdtt/mapper/wdttInfo.xml"/>
 	 <mapper resource="/wdtt/mapper/wdttInfo.xml"/>
 	 <mapper resource="/wdtt/mapper/newsBoard.xml"/>
+	 <mapper resource="/wdtt/mapper/comment.xml"/>
 	 
 	</mappers>
 </configuration>
