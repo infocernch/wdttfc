@@ -8,8 +8,9 @@ $(function() {
 	$("#btnLogout").click(function() {
 		location.href="/wdtt/wdtt_servlet/logout.do";
 	});
-	$("#btnSignOut").click(function() {
-		location.href="/wdtt/wdtt_servlet/signOut.do";
+	$("#btnInformation").click(function() {
+		alert("눌림");
+		location.href="/wdtt/info_servlet/infoEdit.do";
 	});
 });
 

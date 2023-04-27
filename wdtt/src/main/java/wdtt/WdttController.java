@@ -96,6 +96,7 @@ public class WdttController extends HttpServlet {
 			String userid=(String)session.getAttribute("userid");
 			if(userid != null) {
 			System.out.println("userid:"+userid);
+			dao.delete(userid);
 			dao.signOut(userid);
 			session.invalidate();
 			response.sendRedirect(contextPath+"/wdttfc/index.jsp");

@@ -18,6 +18,7 @@
     <th>티어</th>
     <th>전화번호</th>
     <th>관리자</th>
+    <th>내가 올린 글</th>
   </tr>
   <tr>
     <td>${row.name}</td>
@@ -25,6 +26,7 @@
     <td>${row.lv}</td>
     <td>${row.tel}</td>
     <td>${row.mng}</td>
+    <td>${row.count}</td>
   </tr>
 </table>
 </c:forEach>

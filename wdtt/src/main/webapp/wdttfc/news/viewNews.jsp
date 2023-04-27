@@ -35,7 +35,7 @@ function commentList() {
 <%@ include file="../header.jsp" %>
 <c:forEach var="dto" items="${list}">
 		<div class="news" style="align-content : center;">
-			<div class="title"><h3>${dto.title}</h3></div>
+			<div class="title"><h3 id="title">${dto.title}</h3></div>
 			<div class="content">
 				<c:choose>
 				<c:when test="${dto.filename!=null || '-' }">
@@ -55,6 +55,9 @@ function commentList() {
 			</div>
 		</div>
 		<input type="hidden" id="num" value="${dto.num}">
+		<a href="${'#commntList_result'}"><input type="button" value="댓글보기"></a>
+		<a href="${'#write'}"><input type="button" value="댓글쓰기"></a>
+		<a href="${path}/news_servlet/newsList.do"><input type="button" value="처음으로"></a>
 	<hr>
 	
 	

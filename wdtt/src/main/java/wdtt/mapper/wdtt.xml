@@ -50,13 +50,22 @@
 		where userid=#{userid}
 
 	</select>
-	
+
 	<update id="edit">
-	   update wdtt
+		update wdtt
 		set mng=#{mng} , lv=#{lv}
 		where userid=#{userid}
 	</update>
-	
+
+	<update id="drop">
+		UPDATE wdttnews
+		SET show = 'n'
+		WHERE writer IN (
+		SELECT userid
+		FROM wdtt
+		WHERE userid = #{userid}
+		)
+	</update>
 
 
 </mapper>

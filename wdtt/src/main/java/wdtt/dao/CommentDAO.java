@@ -1,6 +1,8 @@
 package wdtt.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -15,9 +17,9 @@ public class CommentDAO {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}	
-		
+
 	}
-	
+
 	public List<CommentDTO> commentList(int news_num) {
 		List<CommentDTO> list = null;
 		try(SqlSession session=MybatisManager.getInstance().openSession()){
@@ -26,5 +28,15 @@ public class CommentDAO {
 			e.printStackTrace();
 		}	
 		return list;
+	}
+
+	public int commentCount(int news_num) {
+		int result=0;
+		try(SqlSession session=MybatisManager.getInstance().openSession()){
+			result=session.selectOne("comment.count",news_num);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 }

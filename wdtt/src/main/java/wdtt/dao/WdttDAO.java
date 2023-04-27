@@ -18,6 +18,8 @@ public class WdttDAO {
 			map.put("userid", userid);
 			map.put("passwd", passwd);
 			result=session.selectOne("wdtt.login_check",map);
+		}catch (Exception e) {
+			e.printStackTrace();
 		}
 		return result;
 
@@ -47,7 +49,7 @@ public class WdttDAO {
 		return result;
 	}
 
-	public void signOut(String userid) {//로그아웃
+	public void signOut(String userid) {//회원탈퇴
 		try(SqlSession session=MybatisManager.getInstance().openSession()){
 			session.delete("wdtt.signOut", userid);
 			session.commit();
@@ -61,6 +63,8 @@ public class WdttDAO {
 		String result="";
 		try(SqlSession session=MybatisManager.getInstance().openSession()){
 			result=session.selectOne("wdtt.adminCheck",userid);
+		}catch (Exception e) {
+			e.printStackTrace();
 		}
 		return result;
 
@@ -86,6 +90,8 @@ public class WdttDAO {
 			map.put("start", start);
 			map.put("end", end);
 			list=session.selectList("wdtt.teamList",map);
+		}catch (Exception e) {
+			e.printStackTrace();
 		}
 		return list;
 	}
@@ -95,6 +101,8 @@ public class WdttDAO {
 		List<WdttDTO> list = null;
 		try(SqlSession session=MybatisManager.getInstance().openSession()){
 			list=session.selectList("wdtt.member",userid);
+		}catch (Exception e) {
+			e.printStackTrace();
 		}
 		return list;
 	}
@@ -104,7 +112,20 @@ public class WdttDAO {
 		try(SqlSession session=MybatisManager.getInstance().openSession()){
 			session.update("wdtt.edit",dto);
 			session.commit();
+		}catch (Exception e) {
+			e.printStackTrace();
 		}
+	}
+
+
+	public void delete(String userid) {
+		try(SqlSession session=MybatisManager.getInstance().openSession()){
+			session.update("wdtt.drop",userid);
+			session.commit();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 

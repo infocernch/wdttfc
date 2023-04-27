@@ -3,20 +3,25 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="wdttInfo">
 	<select id="info" resultType="wdtt.dto.WdttDTO">
-		select userid,name,tel,mng,lv
-		from wdtt
-		where userid=#{userid}
+		select w.name, w.userid, w.lv,
+		w.tel, w.mng, count(wdttnews.writer) as count
+		from wdtt w
+		left outer join wdttnews on w.userid = wdttnews.writer
+		where w.userid = #{wbg12}
+		group by w.userid, w.name, w.tel, w.lv, w.mng
 	</select>
 
 	<update id="updateInfo">
 		UPDATE wdtt
-		SET userid = #{userid}, passwd = #{passwd}, tel = #{tel}
+		SET userid = #{userid}, passwd =
+		#{passwd}, tel = #{tel}
 		WHERE userid = #{sessionUserid}
 	</update>
 
 	<select id="teamList" resultType="wdtt.dto.WdttDTO">
 		WITH numbered_table AS (
-		SELECT userid, name,tel,mng,lv, ROW_NUMBER() OVER (ORDER BY userid DESC) AS
+		SELECT
+		userid, name,tel,mng,lv, ROW_NUMBER() OVER (ORDER BY userid DESC) AS
 		row_num
 		FROM wdtt
 		)
@@ -26,6 +31,7 @@
 	</select>
 
 	<select id="count" resultType="int">
-		select count(*) from wdtt where userid!=#{userid}
+		select count(*) from wdtt where
+		userid!=#{userid}
 	</select>
 </mapper>

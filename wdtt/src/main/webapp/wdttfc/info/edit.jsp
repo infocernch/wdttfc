@@ -34,6 +34,26 @@
 		}
 		return true;
 	}
+    $(function() {
+		$("#drop").click(function() {
+			var form=document.getElementById("form1");
+			var userid = $("#userid").val();
+			var passwd = $("#passwd").val();
+			if(userid == ""){
+				alert("아이디를 입력하세요");
+				$("#userid").focus();
+				return;
+			}
+			if(passwd == ""){
+				alert("비밀번호를 입력하세요");
+				$("#passwd").focus();
+				return;
+			}
+			
+			form.action="${path}/wdtt_servlet/signOut.do";
+			form.submit();
+		});
+	});
     </script>
     <c:if test="${param.message == 'fail'}">
     	<script type="text/javascript">
@@ -64,7 +84,8 @@
 
    
     <button id="edit" class="w-100 btn btn-lg btn-primary"  style="margin-bottom: 10px;">회원 정보 수정</button>
-    <input id="home" type="button" class="w-100 btn btn-lg btn-danger" onclick="goIndex()"  value="돌아가기">
+    <input id="home" type="button" class="w-100 btn btn-lg btn-danger" style="margin-bottom: 10px;" onclick="goIndex()"  value="돌아가기">
+    <input id="drop" type="button" class="w-100 btn btn-lg btn-danger"  value="회원탈퇴">
     <p class="mt-5 mb-3 text-muted">&copy; 2023 wdtt</p>
   </form>
 </main>

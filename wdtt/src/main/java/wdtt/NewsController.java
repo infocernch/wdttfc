@@ -256,29 +256,41 @@ public class NewsController extends HttpServlet {
 
 		else if(url.indexOf("commentList.do")!= -1) {
 			int news_num=Integer.parseInt(request.getParameter("news_num"));
-			System.out.println(news_num);
+
+
+
 			List<CommentDTO> list = dao2.commentList(news_num);
 			request.setAttribute("news_num", news_num);
 			request.setAttribute("list", list);
 			page="/wdttfc/news/commentList.jsp";
-			System.out.println(list);
 			RequestDispatcher rd = request.getRequestDispatcher(page);
 			rd.forward(request, response);
-			
+
 		}else if(url.indexOf("comment.do")!= -1) {
 			HttpSession session=request.getSession();
 			String userid=(String)session.getAttribute("userid");//글쓴id
 			String comment=request.getParameter("comment");//댓글 내용
 			int news_num=Integer.parseInt(request.getParameter("news_num"));//게시글 번호
-			System.out.println(userid+"//"+comment+"//"+news_num);
 			CommentDTO dto = new CommentDTO();
 
 			dto.setWriter(userid);
 			dto.setContent(comment);
 			dto.setNews_num(news_num);
 			dao2.insertComment(dto);
-			
-			
+		}else if(url.indexOf("commentEdit.do")!= -1) {
+			HttpSession session=request.getSession();
+			String writer = (String)session.getAttribute("userid");
+			String content = request.getParameter("content");//수정된 댓글
+			int commentNum = Integer.parseInt(request.getParameter("commentNum"));
+			int num=Integer.parseInt(request.getParameter("num"));
+			System.out.println(writer+"//"+content+"//"+commentNum+"//"+num);
+			CommentDTO dto=new CommentDTO();
+			dto.setComment_num(commentNum);
+			dto.setContent(content);
+			dto.setWriter(writer);
+			dao.editComment(dto);
+			page="/news_servlet/view.do?num=";
+			response.sendRedirect(contextPath+page+num);
 		}
 
 

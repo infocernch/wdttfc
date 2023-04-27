@@ -163,6 +163,16 @@ public class NewsDAO {
 		return list;
 	}
 
+	public void editComment(CommentDTO dto) {
+		try(SqlSession session=MybatisManager.getInstance().openSession()){
+			session.update("comment.edit",dto);
+			session.commit();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+
 	
 
 	

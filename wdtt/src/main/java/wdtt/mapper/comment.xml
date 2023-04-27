@@ -5,13 +5,21 @@
 
  <insert id="insertComment">
   insert into news_comment
-(comment_num,news_num,writer,content) values
-((select nvl(max(comment_num)+1,1) from news_comment)
-, #{news_num}, #{writer}, #{content})
+ (comment_num,news_num,writer,content) values
+ ((select nvl(max(comment_num)+1,1) from news_comment)
+ , #{news_num}, #{writer}, #{content})
  </insert>
 
 <select id="commentList" resultType="wdtt.dto.CommentDTO">
- select*from news_comment where news_num=#{news_num}
+ SELECT nc.writer, wdtt.name, nc.content, nc.join_date, comment_num, nc.news_num
+  FROM news_comment nc
+  LEFT OUTER JOIN wdtt ON nc.writer = wdtt.userid
+  WHERE news_num = #{news_num}
+  ORDER BY comment_num ASC
 </select>
 
+<update id="edit">
+update news_comment set content=#{content}
+where comment_num = #{comment_num}
+</update>
 </mapper>

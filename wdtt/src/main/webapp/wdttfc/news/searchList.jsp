@@ -14,18 +14,7 @@
 	function insert() {
 		location.href = "${path}/wdttfc/news/newsInsert.jsp";
 	}
-	function view(num) {
-		$.ajax({
-			type : "post",
-			url : "${path}/news_servlet/view.do",
-			data : {
-				num : num
-			},
-			success : function(result) {
-				$("#viewNews").html(result);
-			}
-		});
-	}
+	
 </script>
 <link href="${path}/wdttfc/css/bootstrap.min.css" rel="stylesheet">
 <link href="${path}/wdttfc/css/carousel.css" rel="stylesheet">
@@ -55,6 +44,7 @@
 			<th>조회수</th>
 		</tr>
 		<c:forEach var="dto" items="${list}">
+		<form method="post" action="${path}/news_servlet/view.do">
 			<c:choose>
 				<c:when test="${dto.show=='y'}">
 					<tr>
@@ -63,8 +53,9 @@
 						<td>${dto.title}</td>
 						<td><fmt:formatDate value="${dto.join_date}"
 								pattern="yyyy-MM-dd" /></td>
-						<td><input type="button" onclick="view('${dto.num}')"
-							value="자세히"></td>
+						<td>
+						<input type="hidden" name="num" value="${dto.num}">
+						<input type="submit" value="자세히"></td>
 						<td>${dto.readcount}</td>
 					</tr>
 				</c:when>
@@ -74,6 +65,7 @@
 					</tr>
 				</c:otherwise>
 			</c:choose>
+			</form>
 		</c:forEach>
 		<tr>
 			<td colspan="9" align="center">
@@ -107,10 +99,10 @@
 		<form action="${path}/news_servlet/search.do" name="form1"
 			method="post">
 			<select name="search_option">
-				<option value="writer">이름</option>
+				<option value="writer">글쓴이</option>
 				<option value="title">제목</option>
 				<option value="content">내용</option>
-				<option value="all">이름+제목+내용</option>
+				<option value="all">글쓴이+제목+내용</option>
 			</select> <input name="keyword">
 			<button id="btnSearch">검색</button>
 		</form>

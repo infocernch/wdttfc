@@ -20,10 +20,8 @@
     			}
     		});
     		
-    		$("#btnSignOut").click(function() {
-    			if(confirm("정말 우리와의 으리를 저버리고 탈퇴하시겠습니까?")){
-    			location.href="/wdtt/wdtt_servlet/signOut.do";
-    			}
+    		$("#btnInformation").click(function() {
+    			location.href="${path}/ContentServlet/info.do";
     		});
     		
     	});
@@ -53,7 +51,7 @@
  	 <c:otherwise>
  	 <div class="col-md-3 text-end">
         <button id="btnLogout" type="button" class="btn btn-outline-primary me-2">로그아웃</button>
-        <button id="btnSignOut"  type="button" class="btn btn-primary">회원탈퇴</button>
+        <button id="btnInformation"  type="button" class="btn btn-primary">정보 수정</button>
       </div>
 	</c:otherwise>
 
