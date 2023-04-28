@@ -3,23 +3,27 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="comment">
 
- <insert id="insertComment">
-  insert into news_comment
- (comment_num,news_num,writer,content) values
- ((select nvl(max(comment_num)+1,1) from news_comment)
- , #{news_num}, #{writer}, #{content})
- </insert>
+	<insert id="insertComment">
+		insert into news_comment
+		(comment_num,news_num,writer,content) values
+		((select nvl(max(comment_num)+1,1) from news_comment)
+		, #{news_num}, #{writer}, #{content})
+	</insert>
 
-<select id="commentList" resultType="wdtt.dto.CommentDTO">
- SELECT nc.writer, wdtt.name, nc.content, nc.join_date, comment_num, nc.news_num
-  FROM news_comment nc
-  LEFT OUTER JOIN wdtt ON nc.writer = wdtt.userid
-  WHERE news_num = #{news_num}
-  ORDER BY comment_num ASC
-</select>
+	<select id="commentList" resultType="wdtt.dto.CommentDTO">
+		SELECT nc.writer, wdtt.name, nc.content, nc.join_date, comment_num, show,
+		nc.news_num
+		FROM news_comment nc
+		LEFT OUTER JOIN wdtt ON nc.writer = wdtt.userid
+		WHERE news_num = #{news_num}
+		ORDER BY comment_num ASC
+	</select>
 
-<update id="edit">
-update news_comment set content=#{content}
-where comment_num = #{comment_num}
-</update>
+	<update id="edit">
+		update news_comment set content=#{content}
+		where comment_num = #{comment_num} and news_num=#{news_num}
+	</update>
+	<update id="deleteComment">
+	 update news_comment set show='n' where comment_num=#{comment_num}
+	</update>
 </mapper>

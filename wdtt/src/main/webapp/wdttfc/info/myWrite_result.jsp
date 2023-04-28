@@ -26,13 +26,17 @@
 	function btnReset(num) {
 		location.href="${path}/news_servlet/reset.do?num="+num;
 	}
+	function myWrite(num) {
+		location.href="${path}/news_servlet/view.do?num="+num;
+	}
+	
 	
 </script>
 
 </head>
 <body>
 	<h2>내가 쓴 글</h2>
-	<table border="1" style="width: 100%;">
+	<table border="1" style="width: 100%;" class="table table-hover">
 
 		<tr>
 			<th>글번호</th>
@@ -46,7 +50,7 @@
 		<c:forEach var="dto" items="${list}">
 
 
-			<tr>
+			<tr onclick="myWrite('${dto.num}')">
 				<td>${dto.num}</td>
 				<td>${dto.writer}</td>
 				<c:choose>
@@ -61,15 +65,17 @@
 						<td><input type="button"onclick="btnReset('${dto.num}')" value="복구"></td>
 					</c:otherwise>
 				</c:choose>
-				<td><input type="button" onclick="btnModify('${dto.num}')"
+				<td colspan="2"><input type="button" onclick="btnModify('${dto.num}')"
 					value="수정/삭제"></td>
 
 				<td>${dto.readcount}</td>
 			</tr>
-
+			
+			
 
 
 		</c:forEach>
+		
 	</table>
 
 	<div id="modify_result"></div>

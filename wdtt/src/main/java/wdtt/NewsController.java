@@ -165,7 +165,7 @@ public class NewsController extends HttpServlet {
 			String userid=(String)session.getAttribute("userid");
 			List<WdttNewsDTO> list = dao.myWrite(start,end,userid);
 			request.setAttribute("list", list);
-			request.setAttribute("page", pager);
+			request.setAttribute("page2", pager);
 			page="/wdttfc/info/myWrite_result.jsp";
 			RequestDispatcher rd=request.getRequestDispatcher(page);
 			rd.forward(request, response);
@@ -283,14 +283,19 @@ public class NewsController extends HttpServlet {
 			String content = request.getParameter("content");//수정된 댓글
 			int commentNum = Integer.parseInt(request.getParameter("commentNum"));
 			int num=Integer.parseInt(request.getParameter("num"));
-			System.out.println(writer+"//"+content+"//"+commentNum+"//"+num);
 			CommentDTO dto=new CommentDTO();
 			dto.setComment_num(commentNum);
 			dto.setContent(content);
 			dto.setWriter(writer);
+			dto.setNews_num(num);
 			dao.editComment(dto);
-			page="/news_servlet/view.do?num=";
-			response.sendRedirect(contextPath+page+num);
+
+		}else if(url.indexOf("commentDelete.do")!= -1) {
+			int comment_num=Integer.parseInt(request.getParameter("comment_num"));
+			System.out.println(comment_num);
+			dao.deleteComment(comment_num);
+		}else if(url.indexOf("hot.do")!= -1) {
+			List<WdttNewsDTO> list = dao.hot();
 		}
 
 

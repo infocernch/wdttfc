@@ -98,4 +98,7 @@ WHERE row_num BETWEEN #{start} AND #{end}
 , #{news_num}, #{writer}, #{content})
  </insert>
  
+ <select id="hot" resultType="wdtt.dto.WdttNewsDTO">
+ 
+ </select>
 </mapper>

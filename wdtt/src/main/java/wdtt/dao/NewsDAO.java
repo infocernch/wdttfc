@@ -173,6 +173,24 @@ public class NewsDAO {
 		
 	}
 
+	public void deleteComment(int comment_num) {
+		try(SqlSession session=MybatisManager.getInstance().openSession()){
+			session.update("comment.deleteComment",comment_num);
+			session.commit();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+	public List<WdttNewsDTO> hot() {
+		List<WdttNewsDTO> list= null;
+		try(SqlSession session=MybatisManager.getInstance().openSession()){
+			list=session.selectList("news.hot");
+		}
+		return list;
+	}
+
 	
 
 	

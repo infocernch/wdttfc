@@ -1,0 +1,8 @@
+@charset "UTF-8";
+.title{display: flex; align-items: center;}
+#title{flex-grow:1; text-align: center; margin-top:2em;}
+.readCount{flex-shrink: 0;}
+img {display: block; margin: auto;}
+
+.content{text-align: center; margin-top: 1em; margin-right:10px; width:100%;}
+.button{text-align: right;}

@@ -1,0 +1,8 @@
+@charset "UTF-8";
+
+#commentDiv{border: 1px solid;}
+#wrtieComment{text-align: center;}
+#writeComment .table{width:70%;}
+textarea{height: 140px; resize: none;}
+
+#btnMove .btn{float: right;}

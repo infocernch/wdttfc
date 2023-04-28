@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
   
-     <div class="container">
+     <div class="container" >
     	<header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between border-bottom">
       		<a href="${path}/wdttfc/index.jsp" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
       			<img src="${path}/wdttfc/image/wdtt.png" width="50" height="50">
@@ -65,8 +65,8 @@
     
     <nav class="container nav justify-content-between">
       <a class="nav-link-item link-secondary" href="${path}/ContentServlet/info.do">내 정보</a>
-      <a class="nav-link-item link-secondary" href="#">게임</a>
-      <a class="nav-link-item link-secondary" href="${path}/news_servlet/news.do">뉴스</a>
+      <a class="nav-link-item link-secondary" href="${path}/wdttfc/hot/indexHot">핫게시판</a>
+      <a class="nav-link-item link-secondary" href="${path}/news_servlet/news.do">커뮤니티</a>
       <c:choose>
       <c:when test="${sessionScope.userid==null}">
       <a class="nav-link-item link-secondary" href="#" onclick="afterLog()">관리자</a>

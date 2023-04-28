@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
 <%@ include file="../../include/header.jsp"%>
+
 <script type="text/javascript">
 	function list(page) {
 		location.href = "${path}/news_servlet/newsList.do?curPage=" + page;
@@ -14,12 +15,17 @@
 	function insert() {
 		location.href = "${path}/wdttfc/news/newsInsert.jsp";
 	}
+	function asdf(num) {
+		var form=document.getElementById("form1");
+		form.action="${path}/news_servlet/view.do?num="+num;
+		form.submit();
+	}
 	
 </script>
 <link href="${path}/wdttfc/css/bootstrap.min.css" rel="stylesheet">
 <link href="${path}/wdttfc/css/carousel.css" rel="stylesheet">
 <link href="${path}/wdttfc/css/carousel.rtl.css" rel="stylesheet">
-
+<link href="${path}/wdttfc/css/newsBoard.css" rel="stylesheet" >
 </head>
 <body>
 	<c:if test="${sessionScope.userid == null }">
@@ -30,32 +36,29 @@
 	</c:if>
 	<%@ include file="../header.jsp"%>
 
+		<h2>Welcome WDTTFC</h2>
 	<div>
-		<h2>뉴스</h2>
-		<input type="button" onclick="insert()" value="뉴스 올리기">
+		<input class="btn text-white btn-sm" style="float:right; background-color: #999966;" type="button" onclick="insert()" value="글쓰기">
 	</div>
-	<table border="1" style="width: 100%;">
+	<table border="1" style="width: 100%;" class="table table-hover">
 		<tr>
 			<th>글번호</th>
 			<th>글쓴이</th>
 			<th>제목</th>
 			<th>날짜</th>
-			<th>&nbsp;</th>
 			<th>조회수</th>
 		</tr>
 		<c:forEach var="dto" items="${list}">
-		<form method="post" action="${path}/news_servlet/view.do">
+		<form method="post" id="form1" action="${path}/news_servlet/view.do">
 			<c:choose>
 				<c:when test="${dto.show=='y'}">
-					<tr>
+					<tr onclick="asdf('${dto.num}')" data-num="${dto.num}">
 						<td>${dto.num}</td>
 						<td>${dto.writer}</td>
 						<td>${dto.title}</td>
 						<td><fmt:formatDate value="${dto.join_date}"
 								pattern="yyyy-MM-dd" /></td>
-						<td>
-						<input type="hidden" name="num" value="${dto.num}">
-						<input type="submit" value="자세히"></td>
+						
 						<td>${dto.readcount}</td>
 					</tr>
 				</c:when>
@@ -95,7 +98,7 @@
 
 
 	</table>
-	<div>
+	<div style="float: right;">
 		<form action="${path}/news_servlet/search.do" name="form1"
 			method="post">
 			<select name="search_option">

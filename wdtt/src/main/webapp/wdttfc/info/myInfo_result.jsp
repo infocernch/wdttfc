@@ -11,7 +11,7 @@
 <body>
 <c:forEach var="row" items="${list}">
 <h2>내 정보</h2>
-<table border="1">
+<table border="1" class="table">
   <tr>
     <th>이름</th>
     <th>아이디</th>
