@@ -47,11 +47,7 @@ $(function() {
       <label for="floatingPassword">Password</label>
     </div>
 
-    <div class="checkbox mb-3">
-      <label>
-        <input type="checkbox" value="remember-me"> Remember me
-      </label>
-    </div>
+   
     <button id="btnLogIn" class="w-100 btn btn-lg btn-primary"  style="margin-bottom: 10px;">Log In</button>
     <input id="btnSignUp" type="button" class="w-100 btn btn-lg btn-danger" value="Sign Up">
     <p class="mt-5 mb-3 text-muted">&copy; 2023 wdtt</p>
