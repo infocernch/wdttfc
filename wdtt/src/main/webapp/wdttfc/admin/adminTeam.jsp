@@ -10,6 +10,8 @@
 <link href="${path}/wdttfc/css/bootstrap.min.css" rel="stylesheet">
 <link href="${path}/wdttfc/css/carousel.css" rel="stylesheet">
 <link href="${path}/wdttfc/css/carousel.rtl.css" rel="stylesheet">
+<link href="${path}/wdttfc/css/wdtt.css" rel="stylesheet">
+<link href="${path}/wdttfc/css/reset.css" rel="stylesheet">
 <script type="text/javascript">
 function list(page) {
 	location.href="${path}/admin_servlet/admin.do?curPage="+page;
@@ -30,8 +32,8 @@ function edit(userid) {
 <body>
 <%@ include file="../header.jsp" %>
 
-<h2>우당탕탕FC멤버</h2>
-<table border="1" style="width:80%; ">
+<h2 style="margin-bottom: 1.2em;">우당탕탕FC멤버</h2>
+<table class="table table-striped">
   <tr>
     <th>이름</th>
     <th>아이디</th>

@@ -7,15 +7,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
 <%@ include file="../../include/header.jsp"%>
-<link href="path/wdttfc/css/bootstrap.min.css" rel="stylesheet">
-<link href="path/wdttfc/css/carousel.css" rel="stylesheet">
-<link href="path/wdttfc/css/carousel.rtl.css" rel="stylesheet">
-
+<link href="${path}/wdttfc/css/bootstrap.min.css" rel="stylesheet">
+<link href="${path}/wdttfc/css/carousel.css" rel="stylesheet">
+<link href="${path}/wdttfc/css/carousel.rtl.css" rel="stylesheet">
+<link href="${path}/wdttfc/css/wdtt.css" rel="stylesheet">
+<link href="${path}/wdttfc/css/reset.css" rel="stylesheet">
 
 </head>
 <body>
 	<form action="${path}/admin_servlet/editMember.do" method="post" name="form1" id="form1">
-		<table border="1" style="width: 80%;">
+		<table class="table table-striped">
 			<tr>
 				<th>이름</th>
 				<th>아이디</th>
@@ -45,7 +46,7 @@
 					</select></td>
 					<td>
 					<input type="hidden" id="userid" name="userid" value="${dto.userid}">
-					<input type="submit" value="회원수정"></td>
+					<input type="submit" value="회원수정" class="btn btn-outline-success"></td>
 				</tr>
 			</c:forEach>
 		</table>

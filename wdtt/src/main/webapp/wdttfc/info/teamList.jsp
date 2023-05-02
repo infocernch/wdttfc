@@ -17,7 +17,7 @@ function list(page) {
 </script>
 </head>
 <body>
-	<h2>팀원 정보</h2>
+	<h2 style="margin-bottom: 1.2em;">팀원 정보</h2>
 	<table border="1" class="table table-striped">
 		<tr>
 			<th>이름</th>

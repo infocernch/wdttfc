@@ -18,7 +18,14 @@
 			alert("아이디 또는 비밀번호가 일치하지 않습니다.");
 		</script>
 	</c:if>
+<script type="text/javascript">
+$(function() {
+	$("#btnSignUp").click(function() {
+		location.href="${path}/wdttfc/signUp.jsp";
+	});
+});
 
+</script>
 	
     
     <!-- Custom styles for this template -->
@@ -52,6 +59,6 @@
 </main>
 
 
-   <script src="js/login.js"></script>
+   
   </body>
 </html>

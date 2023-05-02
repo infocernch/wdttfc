@@ -138,6 +138,7 @@ public class NewsController extends HttpServlet {
 			FileInputStream fis = new FileInputStream(path);
 			OutputStream out = response.getOutputStream();
 			filename = new String(filename.getBytes("utf-8"),"8859_1");//추가코드
+			
 			response.setHeader("Content-Disposition", "attachment;filename="+filename);
 			byte b[] = new byte[4096];
 			int numRead;
@@ -296,6 +297,10 @@ public class NewsController extends HttpServlet {
 			dao.deleteComment(comment_num);
 		}else if(url.indexOf("hot.do")!= -1) {
 			List<WdttNewsDTO> list = dao.hot();
+			request.setAttribute("list", list);
+			page="/wdttfc/hot/indexHot.jsp";
+			RequestDispatcher rd=request.getRequestDispatcher(page);
+			rd.forward(request, response);
 		}
 
 

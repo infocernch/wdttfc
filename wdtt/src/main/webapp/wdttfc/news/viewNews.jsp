@@ -12,6 +12,8 @@
 <link href="${path}/wdttfc/css/carousel.css" rel="stylesheet">
 <link href="${path}/wdttfc/css/carousel.rtl.css" rel="stylesheet">
 <link href="${path}/wdttfc/css/viewNews.css" rel="stylesheet">
+<link href="${path}/wdttfc/css/wdtt.css" rel="stylesheet">
+<link href="${path}/wdttfc/css/reset.css" rel="stylesheet">
 <script type="text/javascript">
 	$(function() {
 		commentList();
@@ -30,6 +32,7 @@
 		});
 	}
 </script>
+
 </head>
 <body>
 	<%@ include file="../header.jsp"%>
@@ -37,16 +40,17 @@
 		<div class="news" style="align-content: center;">
 			<div class="title">
 				<h2 id="title">${dto.title}</h2>
-				<p class="readCount" style="float: right;">
-					<fmt:formatDate value="${dto.join_date}" pattern="yyyy-MM-dd" />
+			</div>
+			<div>
+			<p class="readCount" style="float: right;">
+					<fmt:formatDate value="${dto.join_date}" pattern="yyyy-MM-dd" /><br>
 					조회수 ${dto.readcount}
 				</p>
-
 			</div>
-			<div class="content">
-				<div class="dtoImg">
+			<div class="container content">
+				<div class="img-wrapper">
 					<c:choose>
-						<c:when test="${dto.filename!=null || '-' }">
+						<c:when test="${dto.filename!=null && dto.filename!='-' }">
 							<img src="${path}/news_servlet/file.do?num=${dto.num}"
 								width="70%" height="500">
 							<br>
@@ -56,7 +60,7 @@
 						</c:otherwise>
 					</c:choose>
 				</div>
-				<div class="dtoContent">
+				<div class="text-wrapper">
 					<pre>${dto.content}</pre>
 				</div>
 			</div>

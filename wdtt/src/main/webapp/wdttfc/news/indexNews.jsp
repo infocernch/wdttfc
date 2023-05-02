@@ -10,6 +10,8 @@
 <link href="${path}/wdttfc/css/bootstrap.min.css" rel="stylesheet">
 <link href="${path}/wdttfc/css/carousel.css" rel="stylesheet">
 <link href="${path}/wdttfc/css/carousel.rtl.css" rel="stylesheet">
+<link href="${path}/wdttfc/css/wdtt.css" rel="stylesheet">
+<link href="${path}/wdttfc/css/reset.css" rel="stylesheet">
 </head>
 <body>
 

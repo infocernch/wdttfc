@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-  
      <div class="container" >
     	<header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between border-bottom">
       		<a href="${path}/wdttfc/index.jsp" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
@@ -49,7 +48,7 @@
      </c:when>
      
  	 <c:otherwise>
- 	 <div class="col-md-3 text-end">
+ 	 <div class="col-md-3 text-end ">
         <button id="btnLogout" type="button" class="btn btn-outline-primary me-2">로그아웃</button>
         <button id="btnInformation"  type="button" class="btn btn-primary">정보 수정</button>
       </div>
@@ -63,9 +62,9 @@
     
     
     
-    <nav class="container nav justify-content-between">
+    <nav class="container nav justify-content-between" style="margin-bottom: 2em;">
       <a class="nav-link-item link-secondary" href="${path}/ContentServlet/info.do">내 정보</a>
-      <a class="nav-link-item link-secondary" href="${path}/wdttfc/hot/indexHot">핫게시판</a>
+      <a class="nav-link-item link-secondary" href="${path}/news_servlet/hot.do">핫게시판</a>
       <a class="nav-link-item link-secondary" href="${path}/news_servlet/news.do">커뮤니티</a>
       <c:choose>
       <c:when test="${sessionScope.userid==null}">

@@ -10,6 +10,8 @@
 <link href="${path}/wdttfc/css/bootstrap.min.css" rel="stylesheet">
 <link href="${path}/wdttfc/css/carousel.css" rel="stylesheet">
 <link href="${path}/wdttfc/css/carousel.rtl.css" rel="stylesheet">
+<link href="${path}/wdttfc/css/reset.css" rel="stylesheet">
+<link href="${path}/wdttfc/css/wdtt.css" rel="stylesheet">
 <script type="text/javascript">
 function listNews() {
 	if(confirm("저장이 안됩니다. 뒤로가시겠습니까?")){
@@ -20,7 +22,7 @@ function listNews() {
 </head>
 <body>
 <%@ include file="../header.jsp" %>
-<h2>뉴스 올리기</h2>
+<h2 style="margin-bottom: 1.2em;">게시글 작성</h2>
 <form name="form1" method="post" id="form1" action="${path}/news_servlet/insert.do" enctype="multipart/form-data">
 <table border="1">
 <tr>

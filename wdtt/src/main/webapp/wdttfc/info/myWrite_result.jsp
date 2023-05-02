@@ -10,8 +10,10 @@
 <link href="${path}/wdttfc/css/bootstrap.min.css" rel="stylesheet">
 <link href="${path}/wdttfc/css/carousel.css" rel="stylesheet">
 <link href="${path}/wdttfc/css/carousel.rtl.css" rel="stylesheet">
+<link href="${path}/wdttfc/css/reset.css" rel="stylesheet">
 <script type="text/javascript">
-	function btnModify(num) {
+	function btnModify(e,num) {
+		e.stopPropagation();
 		$.ajax({
 			type : "post",
 			url : "${path}/news_servlet/modify.do",
@@ -20,6 +22,7 @@
 			},
 			success : function(result) {
 				$("#modify_result").html(result);
+				
 			}
 		});
 	}
@@ -35,7 +38,7 @@
 
 </head>
 <body>
-	<h2>내가 쓴 글</h2>
+	<h2 style="margin-bottom: 1.2em;">내가 쓴 글</h2>
 	<table border="1" style="width: 100%;" class="table table-hover">
 
 		<tr>
@@ -65,7 +68,7 @@
 						<td><input type="button"onclick="btnReset('${dto.num}')" value="복구"></td>
 					</c:otherwise>
 				</c:choose>
-				<td colspan="2"><input type="button" onclick="btnModify('${dto.num}')"
+				<td colspan="2"><input type="button" onclick="btnModify(event,'${dto.num}')"
 					value="수정/삭제"></td>
 
 				<td>${dto.readcount}</td>

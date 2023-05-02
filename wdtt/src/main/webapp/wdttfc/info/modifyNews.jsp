@@ -10,7 +10,7 @@
 <link href="${path}/wdttfc/css/bootstrap.min.css" rel="stylesheet">
 <link href="${path}/wdttfc/css/carousel.css" rel="stylesheet">
 <link href="${path}/wdttfc/css/carousel.rtl.css" rel="stylesheet">
-
+<link href="${path}/wdttfc/css/reset.css" rel="stylesheet">
 <script type="text/javascript">
 
 
@@ -35,16 +35,16 @@ $(function() {
 <body>
 
 <c:forEach var="dto" items="${list}">
-<h2>내가 올린 글 수정하기</h2>
+<h2 style="margin-bottom: 1.2em;">내가 올린 글 수정하기</h2>
 <form name="form1" method="post" id="form1" action="${path}/news_servlet/updateNews.do" enctype="multipart/form-data">
-<table border="1">
+<table border="1" style="width: 100%;">
 <tr>
 	<td>작성자 :<input readonly value="${sessionScope.userid }" name="userid" id="userid"></td>
 	<td>제목 :<input id="title" name="title" placeholder="제목을 입력하세요" style="width: 600px;" value="${dto.title}"></td>
 </tr>
 <tr>
 	<td colspan="2" align="center">
-	<input type="file" id="file" name="file" accept="image/gif,image/jpeg,image/png" >
+	<input type="file" id="file" name="file" accept="image/gif,image/jpeg,image/png">
 	<c:if test="${dto.filename != null}">
 	<td>
 	<p>첨부파일 삭제<input type="checkbox" name="fileDel">${dto.filename} </p>

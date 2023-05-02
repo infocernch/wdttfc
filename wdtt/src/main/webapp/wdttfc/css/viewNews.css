@@ -1,8 +1,10 @@
 @charset "UTF-8";
 .title{display: flex; align-items: center;}
 #title{flex-grow:1; text-align: center; margin-top:2em;}
-.readCount{flex-shrink: 0;}
-img {display: block; margin: auto;}
 
-.content{text-align: center; margin-top: 1em; margin-right:10px; width:100%;}
+.container{display: flex;flex-direction: row;align-items: center;}
+.img-wrapper{flex:1;text-align: center;}
+.img-wrapper img{max-width: 100%;}
+.text-wrapper{flex:2;padding: 0 20px;}
+
 .button{text-align: right;}

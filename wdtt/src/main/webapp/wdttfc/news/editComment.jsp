@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
 <%@ include file="../../include/header.jsp"%>
-<link href="path/wdttfc/css/bootstrap.min.css" rel="stylesheet">
-<link href="path/wdttfc/css/carousel.css" rel="stylesheet">
-<link href="path/wdttfc/css/carousel.rtl.css" rel="stylesheet">
+<link href="${path}/wdttfc/css/bootstrap.min.css" rel="stylesheet">
+<link href="${path}/wdttfc/css/carousel.css" rel="stylesheet">
+<link href="${path}/wdttfc/css/carousel.rtl.css" rel="stylesheet">
 </head>
 <body>
 	<%

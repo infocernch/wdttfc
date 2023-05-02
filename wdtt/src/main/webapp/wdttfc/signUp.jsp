@@ -35,7 +35,6 @@
 				url:"${path}/wdtt_servlet/idCheck.do",
 				data:param,
 				success: function(data) {
-					console.log("데이터값:"+data);
 					$("#user").html(data);
 				}
 			});
@@ -69,11 +68,11 @@
     		userid.focus();
     		return false;
     	}
-    	/* if($("#false").css("color","red")){
+    	if($("#false").css("color","red")){
     		alert("아이디 중복확인을 해주세요");
     		userid.focus();
     		return false;
-    	} */
+    	} 
     	if(passwd1.value == ""){
     		alert("비밀번호는 필수 입력입니다.");
     		passwd1.focus();

@@ -13,6 +13,37 @@ public class WdttNewsDTO {
 	private int filesize;
 	private String ext; //첨부파일의 확장자, 테이블에는 없음
 	private String show;
+	private String comment_count;//댓글개수
+	
+	
+	
+	public WdttNewsDTO(int num, String writer, Date join_date, String title, int readcount, String content,
+			String filename, int filesize, String ext, String show, String comment_count) {
+		super();
+		this.num = num;
+		this.writer = writer;
+		this.join_date = join_date;
+		this.title = title;
+		this.readcount = readcount;
+		this.content = content;
+		this.filename = filename;
+		this.filesize = filesize;
+		this.ext = ext;
+		this.show = show;
+		this.comment_count = comment_count;
+	}
+	@Override
+	public String toString() {
+		return "WdttNewsDTO [num=" + num + ", writer=" + writer + ", join_date=" + join_date + ", title=" + title
+				+ ", readcount=" + readcount + ", content=" + content + ", filename=" + filename + ", filesize="
+				+ filesize + ", ext=" + ext + ", show=" + show + ", comment_count=" + comment_count + "]";
+	}
+	public String getComment_count() {
+		return comment_count;
+	}
+	public void setComment_count(String comment_count) {
+		this.comment_count = comment_count;
+	}
 	//게더세더,. ...
 	public int getNum() {
 		return num;
@@ -76,20 +107,6 @@ public class WdttNewsDTO {
 	}
 	public WdttNewsDTO() {
 		
-	}
-	public WdttNewsDTO(int num, String writer, Date join_date, String title, int readcount, String content,
-			String filename, int filesize, String ext, String show) {
-		super();
-		this.num = num;
-		this.writer = writer;
-		this.join_date = join_date;
-		this.title = title;
-		this.readcount = readcount;
-		this.content = content;
-		this.filename = filename;
-		this.filesize = filesize;
-		this.ext = ext;
-		this.show = show;
 	}
 	
 	

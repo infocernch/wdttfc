@@ -10,6 +10,8 @@
 <link href="${path}/wdttfc/css/bootstrap.min.css" rel="stylesheet">
 <link href="${path}/wdttfc/css/carousel.css" rel="stylesheet">
 <link href="${path}/wdttfc/css/carousel.rtl.css" rel="stylesheet">
+<link href="${path}/wdttfc/css/wdtt.css" rel="stylesheet">
+<link href="${path}/wdttfc/css/reset.css" rel="stylesheet">
 
 <script type="text/javascript">
 $(function() {
@@ -90,7 +92,9 @@ function myWrite() {
 <div id="myInfo"></div>
 <div id="team"></div>
 <div id="myBoard"></div>
-<div><a href="${'#top'}">맨 위로</a></div>
+<div style="text-align: center;"><a href="${'#top'}"><input type="button" value="상단으로" class="btn btn-success"></a></div>
+
+
 
 <%@ include file="../footer.jsp" %>
 

@@ -26,6 +26,8 @@
 <link href="${path}/wdttfc/css/carousel.css" rel="stylesheet">
 <link href="${path}/wdttfc/css/carousel.rtl.css" rel="stylesheet">
 <link href="${path}/wdttfc/css/newsBoard.css" rel="stylesheet" >
+<link href="${path}/wdttfc/css/wdtt.css" rel="stylesheet">
+<link href="${path}/wdttfc/css/reset.css" rel="stylesheet">
 </head>
 <body>
 	<c:if test="${sessionScope.userid == null }">
@@ -111,7 +113,7 @@
 		</form>
 	</div>
 	<div id="viewNews" style="margin-top: 100px;"></div>
-	<div><a href="${'#top'}">맨 위로</a></div>
+	<div style="text-align: center;"><a href="${'#top'}"><input type="button" value="상단으로" class="btn btn-success"></a></div>
 	<%@ include file="../footer.jsp"%>
 </body>
 </html>

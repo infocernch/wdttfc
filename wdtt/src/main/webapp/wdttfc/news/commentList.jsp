@@ -11,6 +11,7 @@
 <link href="${path}/wdttfc/css/carousel.css" rel="stylesheet">
 <link href="${path}/wdttfc/css/carousel.rtl.css" rel="stylesheet">
 <link href="${path}/wdttfc/css/commentList.css" rel="stylesheet">
+<link href="${path}/wdttfc/css/reset.css" rel="stylesheet">
 <script type="text/javascript">
 	function btnComment() {
 		var comment = $("#comment").val();
