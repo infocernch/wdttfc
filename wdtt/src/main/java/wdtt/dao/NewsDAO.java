@@ -187,11 +187,23 @@ public class NewsDAO {
 		List<WdttNewsDTO> list= null;
 		try(SqlSession session=MybatisManager.getInstance().openSession()){
 			list=session.selectList("news.hot");
+		}catch (Exception e) {
+			e.printStackTrace();
 		}
 		return list;
 	}
 
-	
+	public WdttNewsDTO fileGet(int num) {
+		WdttNewsDTO dto = null;
+		try(SqlSession session=MybatisManager.getInstance().openSession()){
+			dto=session.selectOne("news.viewNews",num);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dto;
+	}
+
+
 
 	
 

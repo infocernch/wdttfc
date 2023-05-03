@@ -147,11 +147,6 @@
 	<c:choose>
 	<c:when test="${sessionScope.userid==null}">    
     <h1 class="h3 mb-3 fw-normal">회원가입</h1>
-    </c:when>
-    <c:otherwise>
-    <h1 class="h3 mb-3 fw-normal">회원정보수정</h1>
-    </c:otherwise>
-	</c:choose>	
     <div class="form-floating">
       		<input id="userid" name="userid" type="text" class="form-control" onkeydown="reCheck()">
       		<input id="btnCheck" type="button" class="btn btn-primary btn-sm" value="중복확인" onclick="idCheck()">
@@ -159,6 +154,17 @@
      		 <label for="floatingInput">ID</label>
     </div>
     <div id="user" class="idBox"style="margin-bottom: 20px;"></div>
+    </c:when>
+    <c:otherwise>
+    <h1 class="h3 mb-3 fw-normal">회원정보수정</h1>
+    <div class="form-floating">
+      		<input id="userid" name="userid" type="text" class="form-control" onkeydown="reCheck()" value="${sessionScope.userid}" readonly>
+      		<input id="userCheck" name="userid" value="idUnCheck" type="hidden">
+     		 <label for="floatingInput">ID</label>
+    </div>
+    </c:otherwise>
+	</c:choose>	
+    
     <div class="form-floating">
       <input id="passwd1" name="passwd" type="password" class="form-control" >
       <label for="floatingPassword">Password</label>

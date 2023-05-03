@@ -122,7 +122,6 @@ public class NewsController extends HttpServlet {
 
 
 
-
 			page = "/wdttfc/news/viewNews.jsp";
 			RequestDispatcher rd = request.getRequestDispatcher(page);
 			rd.forward(request, response);//포워딩
@@ -138,7 +137,7 @@ public class NewsController extends HttpServlet {
 			FileInputStream fis = new FileInputStream(path);
 			OutputStream out = response.getOutputStream();
 			filename = new String(filename.getBytes("utf-8"),"8859_1");//추가코드
-			
+
 			response.setHeader("Content-Disposition", "attachment;filename="+filename);
 			byte b[] = new byte[4096];
 			int numRead;
@@ -208,14 +207,21 @@ public class NewsController extends HttpServlet {
 			WdttNewsDTO dto = new WdttNewsDTO();
 			dto.setNum(num);
 			dto.setWriter(userid);
-			dto.setFilename(filename);
 			dto.setTitle(title);
 			dto.setContent(content);
 			if(filename == null||filename.trim().equals("")) {
-				filename="-";
+				WdttNewsDTO dto2 = dao.fileGet(num);
+				
+				
+				String fName=dto2.getFilename();
+				int fSize=dto2.getFilesize();
+				dto.setFilename(fName);
+				dto.setFilesize(fSize);
+
+			}else {
+				dto.setFilename(filename);
+				dto.setFilesize(filesize);
 			}
-			dto.setFilename(filename);
-			dto.setFilesize(filesize);
 			String fileDel=multi.getParameter("fileDel");
 			if(fileDel != null && fileDel.equals("on")) {
 				String fileName=dao.getFileName(num);
@@ -225,9 +231,10 @@ public class NewsController extends HttpServlet {
 				dto.setFilesize(0);
 			}
 			dao.update(dto);
-
+			System.out.println(filename+"\\"+filesize);
 			page="/wdttfc/news/indexNews.jsp";
 			response.sendRedirect(contextPath+page);
+
 		}else if(url.indexOf("delete.do")!= -1) {
 			MultipartRequest multi=new MultipartRequest(request, Constants.UPLOAD_PATH, 
 					Constants.MAX_UPLOAD, "utf-8", new DefaultFileRenamePolicy());
@@ -237,7 +244,6 @@ public class NewsController extends HttpServlet {
 			response.sendRedirect(contextPath+page);
 		}else if(url.indexOf("reset.do")!= -1) {
 			int num=Integer.parseInt(request.getParameter("num"));
-			System.out.println(num);
 			dao.reset(num);
 			page="/wdttfc/news/indexNews.jsp";
 			response.sendRedirect(contextPath+page);
@@ -293,7 +299,6 @@ public class NewsController extends HttpServlet {
 
 		}else if(url.indexOf("commentDelete.do")!= -1) {
 			int comment_num=Integer.parseInt(request.getParameter("comment_num"));
-			System.out.println(comment_num);
 			dao.deleteComment(comment_num);
 		}else if(url.indexOf("hot.do")!= -1) {
 			List<WdttNewsDTO> list = dao.hot();

@@ -41,6 +41,7 @@ public class AdminController extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher(page);
 			rd.forward(request, response);
 		}else if(url.indexOf("admin.do")!= -1) {
+			
 			//레코드 갯수 계산
 			int count=dao.count();
 			//페이지 나누기

@@ -31,7 +31,7 @@ function edit(userid) {
 </head>
 <body>
 <%@ include file="../header.jsp" %>
-
+<% String admin = request.getParameter("result"); %>
 <h2 style="margin-bottom: 1.2em;">우당탕탕FC멤버</h2>
 <table class="table table-striped">
   <tr>

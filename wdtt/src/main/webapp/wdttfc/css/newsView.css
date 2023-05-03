@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+  .title {display: block;text-align: center; }
+
+ .content-container { display: flex; flex-direction: column;justify-content: space-between; align-items: center; }
+
+  .img-wrapper {text-align: center; margin-top: 20px; margin-bottom: 20px; }
+
+  .readCount-container {display: flex; justify-content: flex-end;width: 100%; }
+
+  .readCount {text-align: right;}
+
+  .text-wrapper {text-align: left;}
+  
+  .button{float: right;}

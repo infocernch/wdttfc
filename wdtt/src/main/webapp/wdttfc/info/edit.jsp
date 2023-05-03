@@ -74,7 +74,7 @@
     <h1 class="h3 mb-3 fw-normal">회원 정보 수정</h1>
 
     <div class="form-floating">
-      <input id="userid" name="userid" class="form-control" id="floatingInput" placeholder="name@example.com">
+      <input id="userid" name="userid" class="form-control" id="floatingInput" value="${sessionScope.userid}" placeholder="name@example.com">
       <label for="floatingInput">ID</label>
     </div>
     <div class="form-floating">
