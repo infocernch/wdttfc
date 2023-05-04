@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,18 +13,23 @@
 <link href="${path}/wdttfc/css/wdtt.css" rel="stylesheet">
 <link href="${path}/wdttfc/css/reset.css" rel="stylesheet">
 <c:if test="${param.message == 'success' }">
-		<script type="text/javascript">
+	<script type="text/javascript">
 			alert("회원가입에 성공하셨습니다.");
 		</script>
-	</c:if>
+</c:if>
 <c:if test="${param.message == 'edit' }">
-		<script type="text/javascript">
+	<script type="text/javascript">
 			alert("회원정보가 수정되었습니다. 다시 로그인해주세요.");
 		</script>
-	</c:if>
+</c:if>
+<c:if test="${param.message== 'fail' }">
+	<script type="text/javascript">
+		alert("관리자가 아닙니다. 관리자에게 승인받고 사용하세요.");
+	</script>
+</c:if>
 </head>
 <body>
-<%@ include file="content.jsp" %>
+	<%@ include file="content.jsp"%>
 
 </body>
 </html>

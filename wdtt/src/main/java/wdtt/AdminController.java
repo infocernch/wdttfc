@@ -32,14 +32,17 @@ public class AdminController extends HttpServlet {
 		if(url.indexOf("admin_check.do")!= -1) {
 			HttpSession session= request.getSession();
 			String userid=(String)session.getAttribute("userid");
-//			System.out.println(userid);
+			System.out.println(userid);
 			String result=dao.adminCheck(userid);
-//			System.out.println(result);
-			request.setAttribute("result", result);
+			System.out.println(result);
 			
-			page="/wdttfc/admin/adminIndex.jsp";
-			RequestDispatcher rd = request.getRequestDispatcher(page);
-			rd.forward(request, response);
+			if("y".equals(result)) {
+				page="/wdttfc/admin/adminIndex.jsp";
+				response.sendRedirect(contextPath+page);
+			}else {
+				page="/wdttfc/index.jsp";
+				response.sendRedirect(contextPath+page+"?message=fail");;
+			}
 		}else if(url.indexOf("admin.do")!= -1) {
 			
 			//레코드 갯수 계산
